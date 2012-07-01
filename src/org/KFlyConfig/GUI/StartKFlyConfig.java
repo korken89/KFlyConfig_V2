@@ -1,3 +1,4 @@
+package org.KFlyConfig.GUI;
 import java.awt.EventQueue;
 
 public class StartKFlyConfig {
@@ -8,7 +9,7 @@ public class StartKFlyConfig {
 					GUI frame = new GUI();
 					frame.setVisible(true);
 					frame.PopulateComPorts();
-					frame.DisableUntilConnected();
+					//frame.DisableUntilConnected();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

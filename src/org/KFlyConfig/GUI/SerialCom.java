@@ -1,3 +1,5 @@
+package org.KFlyConfig.GUI;
+
 import java.util.*;
 import jssc.*;
 
@@ -8,7 +10,7 @@ public class SerialCom {
 		return Arrays.asList(SerialPortList.getPortNames());
     }
 	
-	public void ConnectToCom(String port, int speed) throws SerialPortException	{
+	public void ConnectToPort(String port, int speed) throws SerialPortException {
 		serialPort = new SerialPort(port); 
 		serialPort.openPort();
 		serialPort.setParams(speed, 8, 1, 0);
@@ -16,7 +18,7 @@ public class SerialCom {
 		serialPort.addEventListener(new SerialPortReader());
 	}
 	
-	public void CloseCom() throws SerialPortException {
+	public void ClosePort() throws SerialPortException {
 		serialPort.closePort();
 	}
 	
@@ -24,11 +26,11 @@ public class SerialCom {
 		public void serialEvent(SerialPortEvent event) {
 			if (event.isRXCHAR()) {
 				try {
-					byte buffer[] = serialPort.readBytes(event.getEventValue());
+					byte buffer[] = serialPort.readBytes();
 					System.out.println(buffer);
 				}
 				catch (SerialPortException ex) {
-					ex.printStackTrace();
+						ex.printStackTrace();
 				}
 			}
 		}
