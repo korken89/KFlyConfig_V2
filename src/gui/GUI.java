@@ -774,7 +774,7 @@ public class GUI extends JFrame implements WindowListener {
 		txtrDebugData.setBackground(new Color(250, 250, 250));
 		txtrDebugData.setText("Awaiting debug data...");
 		txtrDebugData.setEditable(false);
-		txtrDebugData.setBounds(10, 20, 479, 239);
+		txtrDebugData.setBounds(15, 23, 469, 231);
 		txtrDebugData.setBorder(new LineBorder(new Color(160, 160, 160), 1, true));
 		panel.add(txtrDebugData);
 		
