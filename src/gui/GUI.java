@@ -1,13 +1,13 @@
-package org.KFlyConfig.GUI;
+package gui;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.filechooser.*;
+import communication.*;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.*;
 import java.io.*;
-
-import jssc.SerialPortException;
+import jssc.*;
 
 public class GUI extends JFrame implements WindowListener {
 	private SerialCom serialCom;

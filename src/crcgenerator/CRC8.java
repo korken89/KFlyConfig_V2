@@ -1,4 +1,4 @@
-package org.CRCGenerator;
+package crcgenerator;
 import java.util.*;
 
 public class CRC8 {

@@ -1,4 +1,4 @@
-package org.KFlyConfig.GUI;
+package communication;
 
 import java.util.*;
 import jssc.*;

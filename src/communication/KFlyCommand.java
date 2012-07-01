@@ -1,4 +1,4 @@
-package org.KFlyConfig.GUI;
+package communication;
 
 public enum KFlyCommand {
 	Ping(1),

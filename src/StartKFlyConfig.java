@@ -1,4 +1,4 @@
-package org.KFlyConfig.GUI;
+import gui.GUI;
 import java.awt.EventQueue;
 
 public class StartKFlyConfig {
