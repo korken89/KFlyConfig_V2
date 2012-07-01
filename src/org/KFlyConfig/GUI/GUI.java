@@ -476,7 +476,7 @@ public class GUI extends JFrame implements WindowListener {
 		JComboBox Ch1_Role = new JComboBox();
 		Ch1_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch1_Role.setSelectedIndex(0);
-		Ch1_Role.setBounds(368, 25, 66, 20);
+		Ch1_Role.setBounds(366, 25, 66, 20);
 		panelInputs.add(Ch1_Role);
 		
 		JLabel lblCh = new JLabel("Ch. 1");
@@ -498,7 +498,7 @@ public class GUI extends JFrame implements WindowListener {
 		
 		JSpinner Ch1_Max = new JSpinner();
 		Ch1_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch1_Max.setBounds(310, 25, 48, 20);
+		Ch1_Max.setBounds(308, 25, 48, 20);
 		panelInputs.add(Ch1_Max);
 		
 		JLabel lblMin = new JLabel("Min");
@@ -508,23 +508,23 @@ public class GUI extends JFrame implements WindowListener {
 		
 		JLabel lblMax = new JLabel("Max");
 		lblMax.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMax.setBounds(310, 6, 48, 14);
+		lblMax.setBounds(308, 6, 48, 14);
 		panelInputs.add(lblMax);
 		
 		JLabel lblRole = new JLabel("Role");
 		lblRole.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRole.setBounds(368, 6, 66, 14);
+		lblRole.setBounds(366, 6, 66, 14);
 		panelInputs.add(lblRole);
 		
 		JComboBox Ch2_Role = new JComboBox();
 		Ch2_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch2_Role.setSelectedIndex(1);
-		Ch2_Role.setBounds(368, 53, 66, 20);
+		Ch2_Role.setBounds(366, 53, 66, 20);
 		panelInputs.add(Ch2_Role);
 		
 		JSpinner Ch2_Max = new JSpinner();
 		Ch2_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch2_Max.setBounds(310, 53, 48, 20);
+		Ch2_Max.setBounds(308, 53, 48, 20);
 		panelInputs.add(Ch2_Max);
 		
 		JSlider Ch2_Center = new JSlider();
@@ -546,12 +546,12 @@ public class GUI extends JFrame implements WindowListener {
 		JComboBox Ch3_Role = new JComboBox();
 		Ch3_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch3_Role.setSelectedIndex(2);
-		Ch3_Role.setBounds(368, 81, 66, 20);
+		Ch3_Role.setBounds(366, 81, 66, 20);
 		panelInputs.add(Ch3_Role);
 		
 		JSpinner Ch3_Max = new JSpinner();
 		Ch3_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch3_Max.setBounds(310, 81, 48, 20);
+		Ch3_Max.setBounds(308, 81, 48, 20);
 		panelInputs.add(Ch3_Max);
 		
 		JSlider Ch3_Center = new JSlider();
@@ -573,12 +573,12 @@ public class GUI extends JFrame implements WindowListener {
 		JComboBox Ch4_Role = new JComboBox();
 		Ch4_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch4_Role.setSelectedIndex(3);
-		Ch4_Role.setBounds(368, 109, 66, 20);
+		Ch4_Role.setBounds(366, 109, 66, 20);
 		panelInputs.add(Ch4_Role);
 		
 		JSpinner Ch4_Max = new JSpinner();
 		Ch4_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch4_Max.setBounds(310, 109, 48, 20);
+		Ch4_Max.setBounds(308, 109, 48, 20);
 		panelInputs.add(Ch4_Max);
 		
 		JSlider Ch4_Center = new JSlider();
@@ -600,7 +600,7 @@ public class GUI extends JFrame implements WindowListener {
 		JComboBox Ch5_Role = new JComboBox();
 		Ch5_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch5_Role.setSelectedIndex(4);
-		Ch5_Role.setBounds(368, 137, 66, 20);
+		Ch5_Role.setBounds(366, 137, 66, 20);
 		panelInputs.add(Ch5_Role);
 		
 		JLabel lblCh_4 = new JLabel("Ch. 5");
@@ -621,18 +621,18 @@ public class GUI extends JFrame implements WindowListener {
 		
 		JSpinner Ch5_Max = new JSpinner();
 		Ch5_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch5_Max.setBounds(310, 137, 48, 20);
+		Ch5_Max.setBounds(308, 137, 48, 20);
 		panelInputs.add(Ch5_Max);
 		
 		JComboBox Ch6_Role = new JComboBox();
 		Ch6_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch6_Role.setSelectedIndex(5);
-		Ch6_Role.setBounds(368, 165, 66, 20);
+		Ch6_Role.setBounds(366, 165, 66, 20);
 		panelInputs.add(Ch6_Role);
 		
 		JSpinner Ch6_Max = new JSpinner();
 		Ch6_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch6_Max.setBounds(310, 165, 48, 20);
+		Ch6_Max.setBounds(308, 165, 48, 20);
 		panelInputs.add(Ch6_Max);
 		
 		JSlider Ch6_Center = new JSlider();
@@ -654,12 +654,12 @@ public class GUI extends JFrame implements WindowListener {
 		JComboBox Ch7_Role = new JComboBox();
 		Ch7_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch7_Role.setSelectedIndex(6);
-		Ch7_Role.setBounds(368, 193, 66, 20);
+		Ch7_Role.setBounds(366, 193, 66, 20);
 		panelInputs.add(Ch7_Role);
 		
 		JSpinner Ch7_Max = new JSpinner();
 		Ch7_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch7_Max.setBounds(310, 193, 48, 20);
+		Ch7_Max.setBounds(308, 193, 48, 20);
 		panelInputs.add(Ch7_Max);
 		
 		JSlider Ch7_Center = new JSlider();
@@ -681,12 +681,12 @@ public class GUI extends JFrame implements WindowListener {
 		JComboBox Ch8_Role = new JComboBox();
 		Ch8_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch8_Role.setSelectedIndex(7);
-		Ch8_Role.setBounds(368, 221, 66, 20);
+		Ch8_Role.setBounds(366, 221, 66, 20);
 		panelInputs.add(Ch8_Role);
 		
 		JSpinner Ch8_Max = new JSpinner();
 		Ch8_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch8_Max.setBounds(310, 221, 48, 20);
+		Ch8_Max.setBounds(308, 221, 48, 20);
 		panelInputs.add(Ch8_Max);
 		
 		JSlider Ch8_Center = new JSlider();
@@ -706,52 +706,52 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(lblCh_7);
 		
 		JComboBox Ch8_Type = new JComboBox();
-		Ch8_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog Input", "3-state Switch", "On/Off Switch"}));
-		Ch8_Type.setBounds(444, 221, 66, 20);
+		Ch8_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
+		Ch8_Type.setBounds(442, 221, 69, 20);
 		panelInputs.add(Ch8_Type);
 		
 		JComboBox Ch7_Type = new JComboBox();
-		Ch7_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog Input", "3-state Switch", "On/Off Switch"}));
-		Ch7_Type.setBounds(444, 193, 66, 20);
+		Ch7_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
+		Ch7_Type.setBounds(442, 193, 69, 20);
 		panelInputs.add(Ch7_Type);
 		
 		JComboBox Ch6_Type = new JComboBox();
-		Ch6_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog Input", "3-state Switch", "On/Off Switch"}));
-		Ch6_Type.setBounds(444, 165, 66, 20);
+		Ch6_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
+		Ch6_Type.setBounds(442, 165, 69, 20);
 		panelInputs.add(Ch6_Type);
 		
 		JComboBox Ch5_Type = new JComboBox();
-		Ch5_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog Input", "3-state Switch", "On/Off Switch"}));
-		Ch5_Type.setBounds(444, 137, 66, 20);
+		Ch5_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
+		Ch5_Type.setBounds(442, 137, 69, 20);
 		panelInputs.add(Ch5_Type);
 		
 		JComboBox Ch4_Type = new JComboBox();
-		Ch4_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog Input", "3-state Switch", "On/Off Switch"}));
+		Ch4_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
 		Ch4_Type.setSelectedIndex(1);
-		Ch4_Type.setBounds(444, 109, 66, 20);
+		Ch4_Type.setBounds(442, 109, 69, 20);
 		panelInputs.add(Ch4_Type);
 		
 		JComboBox Ch3_Type = new JComboBox();
-		Ch3_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog Input", "3-state Switch", "On/Off Switch"}));
+		Ch3_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
 		Ch3_Type.setSelectedIndex(1);
-		Ch3_Type.setBounds(444, 81, 66, 20);
+		Ch3_Type.setBounds(442, 81, 69, 20);
 		panelInputs.add(Ch3_Type);
 		
 		JComboBox Ch2_Type = new JComboBox();
-		Ch2_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog Input", "3-state Switch", "On/Off Switch"}));
+		Ch2_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
 		Ch2_Type.setSelectedIndex(1);
-		Ch2_Type.setBounds(444, 53, 66, 20);
+		Ch2_Type.setBounds(442, 53, 69, 20);
 		panelInputs.add(Ch2_Type);
 		
 		JComboBox Ch1_Type = new JComboBox();
-		Ch1_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog Input", "3-state Switch", "On/Off Switch"}));
+		Ch1_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
 		Ch1_Type.setSelectedIndex(1);
-		Ch1_Type.setBounds(444, 25, 66, 20);
+		Ch1_Type.setBounds(442, 25, 69, 20);
 		panelInputs.add(Ch1_Type);
 		
 		JLabel lblType = new JLabel("Type");
 		lblType.setHorizontalAlignment(SwingConstants.CENTER);
-		lblType.setBounds(444, 6, 66, 14);
+		lblType.setBounds(442, 6, 69, 14);
 		panelInputs.add(lblType);
 		tabbedPane.addTab("Output Mixer", null, panelMixer, null);
 		tabbedPane.setEnabledAt(3, true);
