@@ -16,4 +16,10 @@ public class StartKFlyConfig {
 			}
 		});
 	}
+	
+	public static String IntToHex(int value) {
+		String hex = Integer.toHexString(value);
+		hex = (hex.length() % 2 == 0) ? "" + hex : "0" + hex;
+		return hex;
+	}
 }

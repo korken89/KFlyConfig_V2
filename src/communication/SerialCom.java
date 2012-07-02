@@ -27,7 +27,8 @@ public class SerialCom {
 			if (event.isRXCHAR()) {
 				try {
 					byte buffer[] = serialPort.readBytes();
-					System.out.println(buffer);
+					for (byte i: buffer)
+						System.out.print((char)i);
 				}
 				catch (SerialPortException ex) {
 						ex.printStackTrace();

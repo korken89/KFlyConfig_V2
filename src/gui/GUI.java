@@ -10,6 +10,8 @@ import java.awt.event.*;
 import java.io.*;
 import jssc.*;
 
+import java.awt.Font;
+
 public class GUI extends JFrame implements WindowListener {
 	private SerialCom serialCom;
 	private boolean connectedToComPort = false;
@@ -132,6 +134,7 @@ public class GUI extends JFrame implements WindowListener {
 	private JComboBox Ch7_Speed;
 	
 	public GUI() {
+		setResizable(false);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
@@ -150,43 +153,13 @@ public class GUI extends JFrame implements WindowListener {
 		setTitle("KFly Config 2.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setBounds(100, 100, 540, 410); /* For windowbuilder init */
+		setBounds(100, 100, 528, 378); /* For windowbuilder init */
 		
 		if (isWindows())
-			setBounds(100, 100, 540, 410);
+			setBounds(100, 100, 528, 378);
 		else
-			setBounds(100, 100, 540, 415);
+			setBounds(100, 100, 528, 360);
 		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnFile = new JMenu("File");
-		menuBar.add(mnFile);
-		
-		JMenuItem mntmSaveConfiguration = new JMenuItem("Save Configuration");
-		mntmSaveConfiguration.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Saving Config...");
-			}
-		});
-		mnFile.add(mntmSaveConfiguration);
-		
-		JMenuItem mntmLoadConfiguration = new JMenuItem("Load Configuration");
-		mntmLoadConfiguration.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Loading Config...");
-			}
-		});
-		mnFile.add(mntmLoadConfiguration);
-		
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mntmExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-
-        });
-		mnFile.add(mntmExit);
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.control);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -195,6 +168,10 @@ public class GUI extends JFrame implements WindowListener {
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 540, 385);
+		if (isWindows())
+			tabbedPane.setBounds(0, 0, 540, 385);
+		else
+			tabbedPane.setBounds(0, 0, 528, 365);
 		contentPane.add(tabbedPane);
 		
 		JPanel panelConnection = new JPanel();
@@ -217,7 +194,7 @@ public class GUI extends JFrame implements WindowListener {
 		comboPortName = new JComboBox();
 		comboPortName.setMaximumRowCount(100);
 		comboPortName.setEditable(true);
-		comboPortName.setBounds(15, 39, 111, 20);
+		comboPortName.setBounds(15, 39, 145, 20);
 		panel_1.add(comboPortName);
 		
 		btnConnect = new JButton("Connect");
@@ -243,7 +220,7 @@ public class GUI extends JFrame implements WindowListener {
 				}
 			}
 		});
-		btnConnect.setBounds(257, 36, 89, 25);
+		btnConnect.setBounds(293, 36, 89, 25);
 		panel_1.add(btnConnect);
 		
 		JLabel lblBootloader = new JLabel("Bootloader");
@@ -254,14 +231,14 @@ public class GUI extends JFrame implements WindowListener {
 		txtBootloader.setText("Awaiting connection...");
 		txtBootloader.setEditable(false);
 		txtBootloader.setColumns(10);
-		txtBootloader.setBounds(15, 84, 471, 20);
+		txtBootloader.setBounds(15, 84, 471, 22);
 		panel_1.add(txtBootloader);
 		
 		txtFirmware = new JTextField();
 		txtFirmware.setText("Awaiting connection...");
 		txtFirmware.setEditable(false);
 		txtFirmware.setColumns(10);
-		txtFirmware.setBounds(15, 130, 471, 20);
+		txtFirmware.setBounds(15, 130, 471, 22);
 		panel_1.add(txtFirmware);
 		
 		JLabel lblFirmware = new JLabel("Firmware");
@@ -273,14 +250,14 @@ public class GUI extends JFrame implements WindowListener {
 		panel_1.add(lblPort);
 		
 		comboBaudrate = new JComboBox();
-		comboBaudrate.setModel(new DefaultComboBoxModel(new String[] {"230400", "115200", "57600", "38400", "19200", "9600", "4800", "2400"}));
+		comboBaudrate.setModel(new DefaultComboBoxModel(new String[] {"256000", "115200", "57600", "38400", "19200", "9600", "4800"}));
 		comboBaudrate.setSelectedIndex(1);
 		comboBaudrate.setMaximumRowCount(100);
-		comboBaudrate.setBounds(136, 39, 111, 20);
+		comboBaudrate.setBounds(172, 39, 111, 20);
 		panel_1.add(comboBaudrate);
 		
 		JLabel lblBaudrate = new JLabel("Baudrate");
-		lblBaudrate.setBounds(137, 22, 110, 14);
+		lblBaudrate.setBounds(173, 22, 110, 14);
 		panel_1.add(lblBaudrate);
 		
 		JPanel panel_2 = new JPanel();
@@ -292,7 +269,7 @@ public class GUI extends JFrame implements WindowListener {
 		
 		FirmwarePath = new JTextField();
 		FirmwarePath.setColumns(10);
-		FirmwarePath.setBounds(15, 40, 375, 20);
+		FirmwarePath.setBounds(15, 39, 375, 22);
 		panel_2.add(FirmwarePath);
 		
 		btnFirmwarePathBrowse = new JButton("Browse");
@@ -1136,6 +1113,25 @@ public class GUI extends JFrame implements WindowListener {
 		button.setBounds(371, 288, 140, 25);
 		panelMixer.add(button);
 		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(Color.WHITE);
+		panel_7.setBorder(new TitledBorder(null, "Presets", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_7.setBounds(10, 254, 351, 59);
+		panelMixer.add(panel_7);
+		panel_7.setLayout(null);
+		
+		JButton btnLoad = new JButton("Load");
+		btnLoad.setBounds(171, 25, 80, 23);
+		panel_7.add(btnLoad);
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.setBounds(261, 25, 80, 23);
+		panel_7.add(btnSave);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(10, 26, 151, 20);
+		panel_7.add(comboBox);
+		
 		JPanel panelDebug = new JPanel();
 		panelDebug.setBackground(Color.WHITE);
 		tabbedPane.addTab("Debug", null, panelDebug, null);
@@ -1197,14 +1193,19 @@ public class GUI extends JFrame implements WindowListener {
 	public static boolean isWindows() {
 		String os = System.getProperty("os.name").toLowerCase();
 		return (os.indexOf("win") >= 0);
- 
 	}
 	
 	public void windowClosing(WindowEvent e) {
-		System.out.println("Closing 2");
+		try {
+			serialCom.ClosePort();
+		} catch (SerialPortException e1) {
+		} catch (NullPointerException e2) {}
 	}
 	public void windowClosed(WindowEvent e) {
-		System.out.println("Closing 1");
+		try {
+			serialCom.ClosePort();
+		} catch (SerialPortException e1) {
+		} catch (NullPointerException e2) {}
 	}
 	public void windowActivated(WindowEvent e) {}
 	public void windowDeactivated(WindowEvent e) {}

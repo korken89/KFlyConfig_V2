@@ -3,21 +3,22 @@ package communication;
 public enum KFlyCommand {
 	Ping(1),
 	DebugMessage(2),
-	WriteFirmware(3),
-	ReadFirmware(4),
-	GetBootloaderVersion(5),
-	GetFirmwareVersion(6),
-	SaveToFlash(7),
-	GetRegulatorData(8),
-	SetRegulatorData(9),
-	GetChannelMix(10),
-	SetChannelMi(11),
-	StartRCCalibration(12),
-	StopRCCalibration(13),
-	CalibrateRCCenters(14),
-	GetRCCalibration(15),
-	SetRCCalibration(16),
-	GetRCValues(17);
+	GetRunningMode(3),
+	WriteFirmware(4),
+	ReadFirmware(5),
+	GetBootloaderVersion(6),
+	GetFirmwareVersion(7),
+	SaveToFlash(8),
+	GetRegulatorData(9),
+	SetRegulatorData(10),
+	GetChannelMix(11),
+	SetChannelMi(12),
+	StartRCCalibration(13),
+	StopRCCalibration(14),
+	CalibrateRCCenters(15),
+	GetRCCalibration(16),
+	SetRCCalibration(17),
+	GetRCValues(18);
 	
 	private int value;
 	
