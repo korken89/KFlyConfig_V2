@@ -5,17 +5,19 @@ public enum KFlyCommand {
 	DebugMessage(2),
 	WriteFirmware(3),
 	ReadFirmware(4),
-	SaveToFlash(5),
-	GetRegulatorData(6),
-	SetRegulatorData(7),
-	GetChannelMix(8),
-	SetChannelMi(9),
-	StartRCCalibration(10),
-	StopRCCalibration(11),
-	CalibrateRCCenters(12),
-	GetRCCalibration(13),
-	SetRCCalibration(14),
-	GetRCValues(15);
+	GetBootloaderVersion(5),
+	GetFirmwareVersion(6),
+	SaveToFlash(7),
+	GetRegulatorData(8),
+	SetRegulatorData(9),
+	GetChannelMix(10),
+	SetChannelMi(11),
+	StartRCCalibration(12),
+	StopRCCalibration(13),
+	CalibrateRCCenters(14),
+	GetRCCalibration(15),
+	SetRCCalibration(16),
+	GetRCValues(17);
 	
 	private int value;
 	
@@ -23,7 +25,7 @@ public enum KFlyCommand {
 		this.value = i;
 	}
 	
-	public int getValue() {
+	public int value() {
 		return value;
 	}
 }

@@ -6,7 +6,7 @@ import jssc.*;
 public class SerialCom {
 	private SerialPort serialPort;
 	
-	public List<String> getPorts() {
+	public static List<String> getPorts() {
 		return Arrays.asList(SerialPortList.getPortNames());
     }
 	

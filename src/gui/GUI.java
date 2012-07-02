@@ -3,6 +3,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.filechooser.*;
 import communication.*;
+
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.*;
@@ -49,6 +50,86 @@ public class GUI extends JFrame implements WindowListener {
 	private JSpinner aIL_Pitch;
 	private JSpinner aIL_Roll;
 	private JSpinner aIL_Yaw;
+	private JSpinner Ch1_Min;
+	private JSpinner Ch2_Min;
+	private JSpinner Ch3_Min;
+	private JSpinner Ch4_Min;
+	private JSpinner Ch5_Min;
+	private JSpinner Ch6_Min;
+	private JSpinner Ch7_Min;
+	private JSpinner Ch8_Min;
+	private JSpinner Ch1_Center;
+	private JSpinner Ch2_Center;
+	private JSpinner Ch3_Center;
+	private JSpinner Ch4_Center;
+	private JSpinner Ch5_Center;
+	private JSpinner Ch6_Center;
+	private JSpinner Ch7_Center;
+	private JSpinner Ch8_Center;
+	private JSpinner Ch1_Max;
+	private JSpinner Ch2_Max;
+	private JSpinner Ch3_Max;
+	private JSpinner Ch4_Max;
+	private JSpinner Ch5_Max;
+	private JSpinner Ch6_Max;
+	private JSpinner Ch7_Max;
+	private JSpinner Ch8_Max;
+	private JComboBox Ch1_Role;
+	private JComboBox Ch2_Role;
+	private JComboBox Ch3_Role;
+	private JComboBox Ch4_Role;
+	private JComboBox Ch5_Role;
+	private JComboBox Ch6_Role;
+	private JComboBox Ch7_Role;
+	private JComboBox Ch8_Role;
+	private JComboBox Ch1_Type;
+	private JComboBox Ch2_Type;
+	private JComboBox Ch3_Type;
+	private JComboBox Ch4_Type;
+	private JComboBox Ch5_Type;
+	private JComboBox Ch6_Type;
+	private JComboBox Ch7_Type;
+	private JComboBox Ch8_Type;
+	private JTextField Ch3_Speed;
+	private JTextField Ch4_Speed;
+	private JTextField Ch6_Speed;
+	private JTextField Ch8_Speed;
+	private JComboBox Ch1_Speed;
+	private JSpinner Ch1_Mix1;
+	private JSpinner Ch2_Mix1;
+	private JSpinner Ch3_Mix1;
+	private JSpinner Ch4_Mix1;
+	private JSpinner Ch5_Mix1;
+	private JSpinner Ch6_Mix1;
+	private JSpinner Ch7_Mix1;
+	private JSpinner Ch8_Mix1;
+	private JSpinner Ch1_Mix2;
+	private JSpinner Ch2_Mix2;
+	private JSpinner Ch3_Mix2;
+	private JSpinner Ch4_Mix2;
+	private JSpinner Ch5_Mix2;
+	private JSpinner Ch6_Mix2;
+	private JSpinner Ch7_Mix2;
+	private JSpinner Ch8_Mix2;
+	private JSpinner Ch1_Mix3;
+	private JSpinner Ch2_Mix3;
+	private JSpinner Ch3_Mix3;
+	private JSpinner Ch4_Mix3;
+	private JSpinner Ch5_Mix3;
+	private JSpinner Ch6_Mix3;
+	private JSpinner Ch7_Mix3;
+	private JSpinner Ch8_Mix3;
+	private JSpinner Ch1_Mix4;
+	private JSpinner Ch2_Mix4;
+	private JSpinner Ch3_Mix4;
+	private JSpinner Ch4_Mix4;
+	private JSpinner Ch5_Mix4;
+	private JSpinner Ch6_Mix4;
+	private JSpinner Ch7_Mix4;
+	private JSpinner Ch8_Mix4;
+	private JTextField Ch2_Speed;
+	private JComboBox Ch5_Speed;
+	private JComboBox Ch7_Speed;
 	
 	public GUI() {
 		try {
@@ -66,9 +147,15 @@ public class GUI extends JFrame implements WindowListener {
 		serialCom = new SerialCom();
 		addWindowListener(this);
 		
-		setTitle("KFly Config V2.0");
+		setTitle("KFly Config 2.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 540, 410);
+		
+		setBounds(100, 100, 540, 410); /* For windowbuilder init */
+		
+		if (isWindows())
+			setBounds(100, 100, 540, 410);
+		else
+			setBounds(100, 100, 540, 415);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -107,7 +194,7 @@ public class GUI extends JFrame implements WindowListener {
 		contentPane.setLayout(null);
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 526, 352);
+		tabbedPane.setBounds(0, 0, 540, 385);
 		contentPane.add(tabbedPane);
 		
 		JPanel panelConnection = new JPanel();
@@ -117,7 +204,7 @@ public class GUI extends JFrame implements WindowListener {
 		
 		labelFirmwareProgress = new JLabel("Status: Downloading (47%)");
 		labelFirmwareProgress.setHorizontalAlignment(SwingConstants.CENTER);
-		labelFirmwareProgress.setBounds(-3, 308, 526, 16);
+		labelFirmwareProgress.setBounds(-3, 309, 528, 16);
 		panelConnection.add(labelFirmwareProgress);
 		
 		JPanel panel_1 = new JPanel();
@@ -156,7 +243,7 @@ public class GUI extends JFrame implements WindowListener {
 				}
 			}
 		});
-		btnConnect.setBounds(257, 37, 89, 23);
+		btnConnect.setBounds(257, 36, 89, 25);
 		panel_1.add(btnConnect);
 		
 		JLabel lblBootloader = new JLabel("Bootloader");
@@ -182,7 +269,7 @@ public class GUI extends JFrame implements WindowListener {
 		panel_1.add(lblFirmware);
 		
 		JLabel lblPort = new JLabel("Com Ports");
-		lblPort.setBounds(16, 22, 58, 14);
+		lblPort.setBounds(16, 22, 110, 14);
 		panel_1.add(lblPort);
 		
 		comboBaudrate = new JComboBox();
@@ -193,7 +280,7 @@ public class GUI extends JFrame implements WindowListener {
 		panel_1.add(comboBaudrate);
 		
 		JLabel lblBaudrate = new JLabel("Baudrate");
-		lblBaudrate.setBounds(137, 22, 58, 14);
+		lblBaudrate.setBounds(137, 22, 110, 14);
 		panel_1.add(lblBaudrate);
 		
 		JPanel panel_2 = new JPanel();
@@ -220,7 +307,7 @@ public class GUI extends JFrame implements WindowListener {
 				}
 			}
 		});
-		btnFirmwarePathBrowse.setBounds(400, 39, 89, 23);
+		btnFirmwarePathBrowse.setBounds(400, 38, 89, 25);
 		panel_2.add(btnFirmwarePathBrowse);
 		
 		JLabel lblPathToFile = new JLabel("Path to file");
@@ -230,23 +317,23 @@ public class GUI extends JFrame implements WindowListener {
 		progressBar = new JProgressBar();
 		progressBar.setValue(47);
 		progressBar.setForeground(new Color(50, 205, 50));
-		progressBar.setBounds(-3, 308, 524, 18);
+		progressBar.setBounds(-5, 308, 535, 18);
 		panelConnection.add(progressBar);
 		
 		btnFirmwareFlash = new JButton("Flash");
-		btnFirmwareFlash.setBounds(26, 272, 89, 23);
+		btnFirmwareFlash.setBounds(14, 272, 89, 25);
 		panelConnection.add(btnFirmwareFlash);
 		
 		btnFirmwareVerify = new JButton("Verify");
-		btnFirmwareVerify.setBounds(125, 272, 89, 23);
+		btnFirmwareVerify.setBounds(113, 272, 89, 25);
 		panelConnection.add(btnFirmwareVerify);
 		
 		btnFirmwareRead = new JButton("Read");
-		btnFirmwareRead.setBounds(224, 272, 89, 23);
+		btnFirmwareRead.setBounds(212, 272, 89, 25);
 		panelConnection.add(btnFirmwareRead);
 		
-		JButton btnSaveAllChanges = new JButton("Save all changes to Flash");
-		btnSaveAllChanges.setBounds(322, 271, 185, 25);
+		JButton btnSaveAllChanges = new JButton("Save to Flash");
+		btnSaveAllChanges.setBounds(355, 272, 150, 25);
 		panelConnection.add(btnSaveAllChanges);
 		tabbedPane.setEnabledAt(0, true);		
 		
@@ -336,7 +423,7 @@ public class GUI extends JFrame implements WindowListener {
 		lblKi.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblIntegralLimit = new JLabel("Integral Limit");
-		lblIntegralLimit.setBounds(380, 22, 94, 16);
+		lblIntegralLimit.setBounds(370, 22, 114, 16);
 		panel_3.add(lblIntegralLimit);
 		lblIntegralLimit.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -416,11 +503,11 @@ public class GUI extends JFrame implements WindowListener {
 		
 		JLabel label_5 = new JLabel("Integral Limit");
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setBounds(380, 22, 94, 16);
+		label_5.setBounds(370, 22, 114, 16);
 		panel_4.add(label_5);
 		
 		JButton btnRegulatorSaveChanges = new JButton("Save changes");
-		btnRegulatorSaveChanges.setBounds(407, 288, 103, 25);
+		btnRegulatorSaveChanges.setBounds(371, 288, 140, 25);
 		panelRegulator.add(btnRegulatorSaveChanges);
 		
 		panelMixer = new JPanel();
@@ -445,317 +532,609 @@ public class GUI extends JFrame implements WindowListener {
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(UIManager.getColor("Button.disabledShadow"));
 		panel_6.setBorder(new TitledBorder(null, "Calibrate Centers", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_6.setBounds(10, 257, 167, 60);
+		panel_6.setBounds(10, 257, 150, 60);
 		panelInputs.add(panel_6);
 		panel_6.setLayout(null);
 		
-		JButton btnCalibrateCenters = new JButton("Calibrate Centers");
-		btnCalibrateCenters.setBounds(13, 23, 142, 25);
+		JButton btnCalibrateCenters = new JButton("Calibrate");
+		btnCalibrateCenters.setBounds(15, 23, 120, 25);
 		panel_6.add(btnCalibrateCenters);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(UIManager.getColor("Button.disabledShadow"));
 		panel_5.setBorder(new TitledBorder(null, "Calibrate Endpoints", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_5.setBounds(187, 257, 167, 60);
+		panel_5.setBounds(172, 257, 180, 60);
 		panelInputs.add(panel_5);
 		panel_5.setLayout(null);
 		
 		JButton btnStartCalibrateEndpoints = new JButton("Start");
-		btnStartCalibrateEndpoints.setBounds(12, 24, 65, 25);
+		btnStartCalibrateEndpoints.setBounds(14, 24, 70, 25);
 		panel_5.add(btnStartCalibrateEndpoints);
 		
 		JButton btnStopCalibrateEndpoints = new JButton("Stop");
 		btnStopCalibrateEndpoints.setEnabled(false);
-		btnStopCalibrateEndpoints.setBounds(89, 24, 65, 25);
+		btnStopCalibrateEndpoints.setBounds(96, 24, 70, 25);
 		panel_5.add(btnStopCalibrateEndpoints);
 		
 		JButton btnInputsSaveChanges = new JButton("Save changes");
-		btnInputsSaveChanges.setBounds(408, 288, 103, 25);
+		btnInputsSaveChanges.setBounds(371, 288, 140, 25);
 		panelInputs.add(btnInputsSaveChanges);
 		
-		JComboBox Ch1_Role = new JComboBox();
+		Ch1_Role = new JComboBox();
 		Ch1_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch1_Role.setSelectedIndex(0);
-		Ch1_Role.setBounds(366, 25, 66, 20);
+		Ch1_Role.setBounds(319, 25, 91, 20);
 		panelInputs.add(Ch1_Role);
 		
 		JLabel lblCh = new JLabel("Ch. 1");
 		lblCh.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCh.setBounds(10, 28, 29, 14);
+		lblCh.setBounds(10, 28, 54, 14);
 		panelInputs.add(lblCh);
 		
-		JSlider Ch1_Center = new JSlider();
-		Ch1_Center.setMajorTickSpacing(10);
-		Ch1_Center.setValue(10);
-		Ch1_Center.setBackground(Color.WHITE);
-		Ch1_Center.setBounds(103, 25, 200, 23);
-		panelInputs.add(Ch1_Center);
-		
-		JSpinner Ch1_Min = new JSpinner();
+		Ch1_Min = new JSpinner();
 		Ch1_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch1_Min.setBounds(49, 25, 48, 20);
+		Ch1_Min.setBounds(49, 25, 80, 20);
 		panelInputs.add(Ch1_Min);
 		
-		JSpinner Ch1_Max = new JSpinner();
+		Ch1_Max = new JSpinner();
 		Ch1_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch1_Max.setBounds(308, 25, 48, 20);
+		Ch1_Max.setBounds(229, 25, 80, 20);
 		panelInputs.add(Ch1_Max);
 		
 		JLabel lblMin = new JLabel("Min");
 		lblMin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMin.setBounds(49, 6, 48, 14);
+		lblMin.setBounds(49, 6, 80, 14);
 		panelInputs.add(lblMin);
 		
 		JLabel lblMax = new JLabel("Max");
 		lblMax.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMax.setBounds(308, 6, 48, 14);
+		lblMax.setBounds(229, 6, 80, 14);
 		panelInputs.add(lblMax);
 		
 		JLabel lblRole = new JLabel("Role");
 		lblRole.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRole.setBounds(366, 6, 66, 14);
+		lblRole.setBounds(319, 6, 91, 14);
 		panelInputs.add(lblRole);
 		
-		JComboBox Ch2_Role = new JComboBox();
+		Ch2_Role = new JComboBox();
 		Ch2_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch2_Role.setSelectedIndex(1);
-		Ch2_Role.setBounds(366, 53, 66, 20);
+		Ch2_Role.setBounds(319, 53, 91, 20);
 		panelInputs.add(Ch2_Role);
 		
-		JSpinner Ch2_Max = new JSpinner();
+		Ch2_Max = new JSpinner();
 		Ch2_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch2_Max.setBounds(308, 53, 48, 20);
+		Ch2_Max.setBounds(229, 53, 80, 20);
 		panelInputs.add(Ch2_Max);
 		
-		JSlider Ch2_Center = new JSlider();
-		Ch2_Center.setValue(10);
-		Ch2_Center.setBackground(Color.WHITE);
-		Ch2_Center.setBounds(103, 53, 200, 23);
-		panelInputs.add(Ch2_Center);
-		
-		JSpinner Ch2_Min = new JSpinner();
+		Ch2_Min = new JSpinner();
 		Ch2_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch2_Min.setBounds(49, 53, 48, 20);
+		Ch2_Min.setBounds(49, 53, 80, 20);
 		panelInputs.add(Ch2_Min);
 		
 		JLabel lblCh_1 = new JLabel("Ch. 2");
 		lblCh_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCh_1.setBounds(10, 56, 29, 14);
+		lblCh_1.setBounds(10, 56, 54, 14);
 		panelInputs.add(lblCh_1);
 		
-		JComboBox Ch3_Role = new JComboBox();
+		Ch3_Role = new JComboBox();
 		Ch3_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch3_Role.setSelectedIndex(2);
-		Ch3_Role.setBounds(366, 81, 66, 20);
+		Ch3_Role.setBounds(319, 81, 91, 20);
 		panelInputs.add(Ch3_Role);
 		
-		JSpinner Ch3_Max = new JSpinner();
+		Ch3_Max = new JSpinner();
 		Ch3_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch3_Max.setBounds(308, 81, 48, 20);
+		Ch3_Max.setBounds(229, 81, 80, 20);
 		panelInputs.add(Ch3_Max);
 		
-		JSlider Ch3_Center = new JSlider();
-		Ch3_Center.setValue(10);
-		Ch3_Center.setBackground(Color.WHITE);
-		Ch3_Center.setBounds(103, 81, 200, 23);
-		panelInputs.add(Ch3_Center);
-		
-		JSpinner Ch3_Min = new JSpinner();
+		Ch3_Min = new JSpinner();
 		Ch3_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch3_Min.setBounds(49, 81, 48, 20);
+		Ch3_Min.setBounds(49, 81, 80, 20);
 		panelInputs.add(Ch3_Min);
 		
 		JLabel lblCh_2 = new JLabel("Ch. 3");
 		lblCh_2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCh_2.setBounds(10, 84, 29, 14);
+		lblCh_2.setBounds(10, 84, 54, 14);
 		panelInputs.add(lblCh_2);
 		
-		JComboBox Ch4_Role = new JComboBox();
+		Ch4_Role = new JComboBox();
 		Ch4_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch4_Role.setSelectedIndex(3);
-		Ch4_Role.setBounds(366, 109, 66, 20);
+		Ch4_Role.setBounds(319, 109, 91, 20);
 		panelInputs.add(Ch4_Role);
 		
-		JSpinner Ch4_Max = new JSpinner();
+		Ch4_Max = new JSpinner();
 		Ch4_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch4_Max.setBounds(308, 109, 48, 20);
+		Ch4_Max.setBounds(229, 109, 80, 20);
 		panelInputs.add(Ch4_Max);
 		
-		JSlider Ch4_Center = new JSlider();
-		Ch4_Center.setValue(10);
-		Ch4_Center.setBackground(Color.WHITE);
-		Ch4_Center.setBounds(103, 109, 200, 23);
-		panelInputs.add(Ch4_Center);
-		
-		JSpinner Ch4_Min = new JSpinner();
+		Ch4_Min = new JSpinner();
 		Ch4_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch4_Min.setBounds(49, 109, 48, 20);
+		Ch4_Min.setBounds(49, 109, 80, 20);
 		panelInputs.add(Ch4_Min);
 		
 		JLabel lblCh_3 = new JLabel("Ch. 4");
 		lblCh_3.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCh_3.setBounds(10, 112, 29, 14);
+		lblCh_3.setBounds(10, 112, 54, 14);
 		panelInputs.add(lblCh_3);
 		
-		JComboBox Ch5_Role = new JComboBox();
+		Ch5_Role = new JComboBox();
 		Ch5_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch5_Role.setSelectedIndex(4);
-		Ch5_Role.setBounds(366, 137, 66, 20);
+		Ch5_Role.setBounds(319, 137, 91, 20);
 		panelInputs.add(Ch5_Role);
 		
 		JLabel lblCh_4 = new JLabel("Ch. 5");
 		lblCh_4.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCh_4.setBounds(10, 140, 29, 14);
+		lblCh_4.setBounds(10, 140, 54, 14);
 		panelInputs.add(lblCh_4);
 		
-		JSlider Ch5_Center = new JSlider();
-		Ch5_Center.setValue(10);
-		Ch5_Center.setBackground(Color.WHITE);
-		Ch5_Center.setBounds(103, 137, 200, 23);
-		panelInputs.add(Ch5_Center);
-		
-		JSpinner Ch5_Min = new JSpinner();
+		Ch5_Min = new JSpinner();
 		Ch5_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch5_Min.setBounds(49, 137, 48, 20);
+		Ch5_Min.setBounds(49, 137, 80, 20);
 		panelInputs.add(Ch5_Min);
 		
-		JSpinner Ch5_Max = new JSpinner();
+		Ch5_Max = new JSpinner();
 		Ch5_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch5_Max.setBounds(308, 137, 48, 20);
+		Ch5_Max.setBounds(229, 137, 80, 20);
 		panelInputs.add(Ch5_Max);
 		
-		JComboBox Ch6_Role = new JComboBox();
+		Ch6_Role = new JComboBox();
 		Ch6_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch6_Role.setSelectedIndex(5);
-		Ch6_Role.setBounds(366, 165, 66, 20);
+		Ch6_Role.setBounds(319, 165, 91, 20);
 		panelInputs.add(Ch6_Role);
 		
-		JSpinner Ch6_Max = new JSpinner();
+		Ch6_Max = new JSpinner();
 		Ch6_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch6_Max.setBounds(308, 165, 48, 20);
+		Ch6_Max.setBounds(229, 165, 80, 20);
 		panelInputs.add(Ch6_Max);
 		
-		JSlider Ch6_Center = new JSlider();
-		Ch6_Center.setValue(10);
-		Ch6_Center.setBackground(Color.WHITE);
-		Ch6_Center.setBounds(103, 165, 200, 23);
-		panelInputs.add(Ch6_Center);
-		
-		JSpinner Ch6_Min = new JSpinner();
+		Ch6_Min = new JSpinner();
 		Ch6_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch6_Min.setBounds(49, 165, 48, 20);
+		Ch6_Min.setBounds(49, 165, 80, 20);
 		panelInputs.add(Ch6_Min);
 		
 		JLabel lblCh_5 = new JLabel("Ch. 6");
 		lblCh_5.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCh_5.setBounds(10, 168, 29, 14);
+		lblCh_5.setBounds(10, 168, 54, 14);
 		panelInputs.add(lblCh_5);
 		
-		JComboBox Ch7_Role = new JComboBox();
+		Ch7_Role = new JComboBox();
 		Ch7_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch7_Role.setSelectedIndex(6);
-		Ch7_Role.setBounds(366, 193, 66, 20);
+		Ch7_Role.setBounds(319, 193, 91, 20);
 		panelInputs.add(Ch7_Role);
 		
-		JSpinner Ch7_Max = new JSpinner();
+		Ch7_Max = new JSpinner();
 		Ch7_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch7_Max.setBounds(308, 193, 48, 20);
+		Ch7_Max.setBounds(229, 193, 80, 20);
 		panelInputs.add(Ch7_Max);
 		
-		JSlider Ch7_Center = new JSlider();
-		Ch7_Center.setValue(10);
-		Ch7_Center.setBackground(Color.WHITE);
-		Ch7_Center.setBounds(103, 193, 200, 23);
-		panelInputs.add(Ch7_Center);
-		
-		JSpinner Ch7_Min = new JSpinner();
+		Ch7_Min = new JSpinner();
 		Ch7_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch7_Min.setBounds(49, 193, 48, 20);
+		Ch7_Min.setBounds(49, 193, 80, 20);
 		panelInputs.add(Ch7_Min);
 		
 		JLabel lblCh_6 = new JLabel("Ch. 7");
 		lblCh_6.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCh_6.setBounds(10, 196, 29, 14);
+		lblCh_6.setBounds(10, 196, 54, 14);
 		panelInputs.add(lblCh_6);
 		
-		JComboBox Ch8_Role = new JComboBox();
+		Ch8_Role = new JComboBox();
 		Ch8_Role.setModel(new DefaultComboBoxModel(new String[] {"Throttle", "Pitch", "Roll", "Yaw", "Aux 1", "Aux 2", "Aux 3", "Aux 4"}));
 		Ch8_Role.setSelectedIndex(7);
-		Ch8_Role.setBounds(366, 221, 66, 20);
+		Ch8_Role.setBounds(319, 221, 91, 20);
 		panelInputs.add(Ch8_Role);
 		
-		JSpinner Ch8_Max = new JSpinner();
+		Ch8_Max = new JSpinner();
 		Ch8_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch8_Max.setBounds(308, 221, 48, 20);
+		Ch8_Max.setBounds(229, 221, 80, 20);
 		panelInputs.add(Ch8_Max);
 		
-		JSlider Ch8_Center = new JSlider();
-		Ch8_Center.setValue(10);
-		Ch8_Center.setBackground(Color.WHITE);
-		Ch8_Center.setBounds(103, 221, 200, 23);
-		panelInputs.add(Ch8_Center);
-		
-		JSpinner Ch8_Min = new JSpinner();
+		Ch8_Min = new JSpinner();
 		Ch8_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		Ch8_Min.setBounds(49, 221, 48, 20);
+		Ch8_Min.setBounds(49, 221, 80, 20);
 		panelInputs.add(Ch8_Min);
 		
 		JLabel lblCh_7 = new JLabel("Ch. 8");
 		lblCh_7.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCh_7.setBounds(10, 224, 29, 14);
+		lblCh_7.setBounds(10, 224, 54, 14);
 		panelInputs.add(lblCh_7);
 		
-		JComboBox Ch8_Type = new JComboBox();
+		Ch8_Type = new JComboBox();
 		Ch8_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
-		Ch8_Type.setBounds(442, 221, 69, 20);
+		Ch8_Type.setBounds(420, 221, 91, 20);
 		panelInputs.add(Ch8_Type);
 		
-		JComboBox Ch7_Type = new JComboBox();
+		Ch7_Type = new JComboBox();
 		Ch7_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
-		Ch7_Type.setBounds(442, 193, 69, 20);
+		Ch7_Type.setBounds(420, 193, 91, 20);
 		panelInputs.add(Ch7_Type);
 		
-		JComboBox Ch6_Type = new JComboBox();
+		Ch6_Type = new JComboBox();
 		Ch6_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
-		Ch6_Type.setBounds(442, 165, 69, 20);
+		Ch6_Type.setBounds(420, 165, 91, 20);
 		panelInputs.add(Ch6_Type);
 		
-		JComboBox Ch5_Type = new JComboBox();
+		Ch5_Type = new JComboBox();
 		Ch5_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
-		Ch5_Type.setBounds(442, 137, 69, 20);
+		Ch5_Type.setBounds(420, 137, 91, 20);
 		panelInputs.add(Ch5_Type);
 		
-		JComboBox Ch4_Type = new JComboBox();
+		Ch4_Type = new JComboBox();
 		Ch4_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
 		Ch4_Type.setSelectedIndex(1);
-		Ch4_Type.setBounds(442, 109, 69, 20);
+		Ch4_Type.setBounds(420, 109, 91, 20);
 		panelInputs.add(Ch4_Type);
 		
-		JComboBox Ch3_Type = new JComboBox();
+		Ch3_Type = new JComboBox();
 		Ch3_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
 		Ch3_Type.setSelectedIndex(1);
-		Ch3_Type.setBounds(442, 81, 69, 20);
+		Ch3_Type.setBounds(420, 81, 91, 20);
 		panelInputs.add(Ch3_Type);
 		
-		JComboBox Ch2_Type = new JComboBox();
+		Ch2_Type = new JComboBox();
 		Ch2_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
 		Ch2_Type.setSelectedIndex(1);
-		Ch2_Type.setBounds(442, 53, 69, 20);
+		Ch2_Type.setBounds(420, 53, 91, 20);
 		panelInputs.add(Ch2_Type);
 		
-		JComboBox Ch1_Type = new JComboBox();
+		Ch1_Type = new JComboBox();
 		Ch1_Type.setModel(new DefaultComboBoxModel(new String[] {"Off", "Analog", "3-state", "On/Off"}));
 		Ch1_Type.setSelectedIndex(1);
-		Ch1_Type.setBounds(442, 25, 69, 20);
+		Ch1_Type.setBounds(420, 25, 91, 20);
 		panelInputs.add(Ch1_Type);
 		
 		JLabel lblType = new JLabel("Type");
 		lblType.setHorizontalAlignment(SwingConstants.CENTER);
-		lblType.setBounds(442, 6, 69, 14);
+		lblType.setBounds(420, 6, 91, 14);
 		panelInputs.add(lblType);
+		
+		Ch1_Center = new JSpinner();
+		Ch1_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch1_Center.setBounds(139, 25, 80, 20);
+		panelInputs.add(Ch1_Center);
+		
+		JLabel lblCenter = new JLabel("Center");
+		lblCenter.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCenter.setBounds(129, 6, 100, 14);
+		panelInputs.add(lblCenter);
+		
+		Ch2_Center = new JSpinner();
+		Ch2_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch2_Center.setBounds(139, 53, 80, 20);
+		panelInputs.add(Ch2_Center);
+		
+		Ch3_Center = new JSpinner();
+		Ch3_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch3_Center.setBounds(139, 81, 80, 20);
+		panelInputs.add(Ch3_Center);
+		
+		Ch4_Center = new JSpinner();
+		Ch4_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch4_Center.setBounds(139, 109, 80, 20);
+		panelInputs.add(Ch4_Center);
+		
+		Ch5_Center = new JSpinner();
+		Ch5_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch5_Center.setBounds(139, 137, 80, 20);
+		panelInputs.add(Ch5_Center);
+		
+		Ch6_Center = new JSpinner();
+		Ch6_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch6_Center.setBounds(139, 165, 80, 20);
+		panelInputs.add(Ch6_Center);
+		
+		Ch7_Center = new JSpinner();
+		Ch7_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch7_Center.setBounds(139, 193, 80, 20);
+		panelInputs.add(Ch7_Center);
+		
+		Ch8_Center = new JSpinner();
+		Ch8_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch8_Center.setBounds(139, 221, 80, 20);
+		panelInputs.add(Ch8_Center);
 		tabbedPane.addTab("Output Mixer", null, panelMixer, null);
-		tabbedPane.setEnabledAt(3, true);
 		panelMixer.setLayout(null);
+		
+		Ch2_Speed = new JTextField();
+		Ch2_Speed.setText("400 Hz");
+		Ch2_Speed.setEditable(false);
+		Ch2_Speed.setBounds(420, 52, 91, 22);
+		panelMixer.add(Ch2_Speed);
+		Ch2_Speed.setColumns(10);
+		
+		Ch3_Speed = new JTextField();
+		Ch3_Speed.setText("400 Hz");
+		Ch3_Speed.setEditable(false);
+		Ch3_Speed.setColumns(10);
+		Ch3_Speed.setBounds(420, 80, 91, 22);
+		panelMixer.add(Ch3_Speed);
+		
+		Ch4_Speed = new JTextField();
+		Ch4_Speed.setText("400 Hz");
+		Ch4_Speed.setEditable(false);
+		Ch4_Speed.setColumns(10);
+		Ch4_Speed.setBounds(420, 108, 91, 22);
+		panelMixer.add(Ch4_Speed);
+		
+		Ch6_Speed = new JTextField();
+		Ch6_Speed.setText("400 Hz");
+		Ch6_Speed.setEditable(false);
+		Ch6_Speed.setColumns(10);
+		Ch6_Speed.setBounds(420, 164, 91, 22);
+		panelMixer.add(Ch6_Speed);
+		
+		Ch8_Speed = new JTextField();
+		Ch8_Speed.setText("400 Hz");
+		Ch8_Speed.setEditable(false);
+		Ch8_Speed.setColumns(10);
+		Ch8_Speed.setBounds(420, 220, 91, 22);
+		panelMixer.add(Ch8_Speed);
+		tabbedPane.setEnabledAt(3, true);
+		
+		Ch1_Speed = new JComboBox();
+		Ch1_Speed.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Ch2_Speed.setText((String) Ch1_Speed.getSelectedItem());
+				Ch3_Speed.setText((String) Ch1_Speed.getSelectedItem());
+				Ch4_Speed.setText((String) Ch1_Speed.getSelectedItem());
+			}
+		});
+		Ch1_Speed.setModel(new DefaultComboBoxModel(new String[] {"400 Hz", "50 Hz"}));
+		Ch1_Speed.setBounds(420, 25, 91, 20);
+		panelMixer.add(Ch1_Speed);
+		
+		JLabel label_6 = new JLabel("Ch. 1");
+		label_6.setHorizontalAlignment(SwingConstants.LEFT);
+		label_6.setBounds(10, 28, 54, 14);
+		panelMixer.add(label_6);
+		
+		Ch1_Mix1 = new JSpinner();
+		Ch1_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch1_Mix1.setBounds(49, 25, 80, 20);
+		panelMixer.add(Ch1_Mix1);
+		
+		Ch1_Mix3 = new JSpinner();
+		Ch1_Mix3.setBounds(229, 25, 80, 20);
+		Ch1_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch1_Mix3);
+		
+		JLabel lblThrottle = new JLabel("Throttle");
+		lblThrottle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblThrottle.setBounds(39, 6, 100, 14);
+		panelMixer.add(lblThrottle);
+		
+		JLabel lblRoll_1 = new JLabel("Roll");
+		lblRoll_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRoll_1.setBounds(229, 6, 80, 14);
+		panelMixer.add(lblRoll_1);
+		
+		JLabel lblSpeed = new JLabel("Speed");
+		lblSpeed.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSpeed.setBounds(420, 6, 91, 14);
+		panelMixer.add(lblSpeed);
+		
+		Ch2_Mix3 = new JSpinner();
+		Ch2_Mix3.setBounds(229, 53, 80, 20);
+		Ch2_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch2_Mix3);
+		
+		Ch2_Mix1 = new JSpinner();
+		Ch2_Mix1.setBounds(49, 53, 80, 20);
+		Ch2_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch2_Mix1);
+		
+		JLabel label_10 = new JLabel("Ch. 2");
+		label_10.setHorizontalAlignment(SwingConstants.LEFT);
+		label_10.setBounds(10, 56, 54, 14);
+		panelMixer.add(label_10);
+		
+		Ch3_Mix3 = new JSpinner();
+		Ch3_Mix3.setBounds(229, 81, 80, 20);
+		Ch3_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch3_Mix3);
+		
+		Ch3_Mix1 = new JSpinner();
+		Ch3_Mix1.setBounds(49, 81, 80, 20);
+		Ch3_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch3_Mix1);
+		
+		JLabel label_11 = new JLabel("Ch. 3");
+		label_11.setHorizontalAlignment(SwingConstants.LEFT);
+		label_11.setBounds(10, 84, 54, 14);
+		panelMixer.add(label_11);
+		
+		Ch4_Mix3 = new JSpinner();
+		Ch4_Mix3.setBounds(229, 109, 80, 20);
+		Ch4_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch4_Mix3);
+		
+		Ch4_Mix1 = new JSpinner();
+		Ch4_Mix1.setBounds(49, 109, 80, 20);
+		Ch4_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch4_Mix1);
+		
+		JLabel label_12 = new JLabel("Ch. 4");
+		label_12.setHorizontalAlignment(SwingConstants.LEFT);
+		label_12.setBounds(10, 112, 54, 14);
+		panelMixer.add(label_12);
+		
+		Ch5_Speed = new JComboBox();
+		Ch5_Speed.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ch6_Speed.setText((String) Ch5_Speed.getSelectedItem());
+			}
+		});
+		Ch5_Speed.setModel(new DefaultComboBoxModel(new String[] {"400 Hz", "50 Hz"}));
+		Ch5_Speed.setBounds(420, 137, 91, 20);
+		panelMixer.add(Ch5_Speed);
+		
+		JLabel label_13 = new JLabel("Ch. 5");
+		label_13.setHorizontalAlignment(SwingConstants.LEFT);
+		label_13.setBounds(10, 140, 54, 14);
+		panelMixer.add(label_13);
+		
+		Ch5_Mix1 = new JSpinner();
+		Ch5_Mix1.setBounds(49, 137, 80, 20);
+		Ch5_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch5_Mix1);
+		
+		Ch5_Mix3 = new JSpinner();
+		Ch5_Mix3.setBounds(229, 137, 80, 20);
+		Ch5_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch5_Mix3);
+		
+		Ch6_Mix3 = new JSpinner();
+		Ch6_Mix3.setBounds(229, 165, 80, 20);
+		Ch6_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch6_Mix3);
+		
+		Ch6_Mix1 = new JSpinner();
+		Ch6_Mix1.setBounds(49, 165, 80, 20);
+		Ch6_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch6_Mix1);
+		
+		JLabel label_14 = new JLabel("Ch. 6");
+		label_14.setHorizontalAlignment(SwingConstants.LEFT);
+		label_14.setBounds(10, 168, 54, 14);
+		panelMixer.add(label_14);
+		
+		Ch7_Speed = new JComboBox();
+		Ch7_Speed.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ch8_Speed.setText((String) Ch7_Speed.getSelectedItem());
+			}
+		});
+		Ch7_Speed.setModel(new DefaultComboBoxModel(new String[] {"400 Hz", "50 Hz"}));
+		Ch7_Speed.setBounds(420, 193, 91, 20);
+		panelMixer.add(Ch7_Speed);
+		
+		Ch7_Mix3 = new JSpinner();
+		Ch7_Mix3.setBounds(229, 193, 80, 20);
+		Ch7_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch7_Mix3);
+		
+		Ch7_Mix1 = new JSpinner();
+		Ch7_Mix1.setBounds(49, 193, 80, 20);
+		Ch7_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch7_Mix1);
+		
+		JLabel label_15 = new JLabel("Ch. 7");
+		label_15.setHorizontalAlignment(SwingConstants.LEFT);
+		label_15.setBounds(10, 196, 54, 14);
+		panelMixer.add(label_15);
+		
+		Ch8_Mix3 = new JSpinner();
+		Ch8_Mix3.setBounds(229, 221, 80, 20);
+		Ch8_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch8_Mix3);
+		
+		Ch8_Mix1 = new JSpinner();
+		Ch8_Mix1.setBounds(49, 221, 80, 20);
+		Ch8_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch8_Mix1);
+		
+		JLabel label_16 = new JLabel("Ch. 8");
+		label_16.setHorizontalAlignment(SwingConstants.LEFT);
+		label_16.setBounds(10, 224, 54, 14);
+		panelMixer.add(label_16);
+		
+		Ch1_Mix2 = new JSpinner();
+		Ch1_Mix2.setBounds(139, 25, 80, 20);
+		Ch1_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch1_Mix2);
+		
+		JLabel lblPitch = new JLabel("Pitch");
+		lblPitch.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPitch.setBounds(129, 6, 100, 14);
+		panelMixer.add(lblPitch);
+		
+		Ch2_Mix2 = new JSpinner();
+		Ch2_Mix2.setBounds(139, 53, 80, 20);
+		Ch2_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch2_Mix2);
+		
+		Ch3_Mix2 = new JSpinner();
+		Ch3_Mix2.setBounds(139, 81, 80, 20);
+		Ch3_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch3_Mix2);
+		
+		Ch4_Mix2 = new JSpinner();
+		Ch4_Mix2.setBounds(139, 109, 80, 20);
+		Ch4_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch4_Mix2);
+		
+		Ch5_Mix2 = new JSpinner();
+		Ch5_Mix2.setBounds(139, 137, 80, 20);
+		Ch5_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch5_Mix2);
+		
+		Ch6_Mix2 = new JSpinner();
+		Ch6_Mix2.setBounds(139, 165, 80, 20);
+		Ch6_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch6_Mix2);
+		
+		Ch7_Mix2 = new JSpinner();
+		Ch7_Mix2.setBounds(139, 193, 80, 20);
+		Ch7_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch7_Mix2);
+		
+		Ch8_Mix2 = new JSpinner();
+		Ch8_Mix2.setBounds(139, 221, 80, 20);
+		Ch8_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch8_Mix2);
+		
+		JLabel lblYaw_1 = new JLabel("Yaw");
+		lblYaw_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblYaw_1.setBounds(321, 6, 80, 14);
+		panelMixer.add(lblYaw_1);
+		
+		Ch1_Mix4 = new JSpinner();
+		Ch1_Mix4.setBounds(321, 25, 80, 20);
+		Ch1_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch1_Mix4);
+		
+		Ch2_Mix4 = new JSpinner();
+		Ch2_Mix4.setBounds(321, 53, 80, 20);
+		Ch2_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch2_Mix4);
+		
+		Ch3_Mix4 = new JSpinner();
+		Ch3_Mix4.setBounds(321, 81, 80, 20);
+		Ch3_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch3_Mix4);
+		
+		Ch4_Mix4 = new JSpinner();
+		Ch4_Mix4.setBounds(321, 109, 80, 20);
+		Ch4_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch4_Mix4);
+		
+		Ch5_Mix4 = new JSpinner();
+		Ch5_Mix4.setBounds(321, 137, 80, 20);
+		Ch5_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch5_Mix4);
+		
+		Ch6_Mix4 = new JSpinner();
+		Ch6_Mix4.setBounds(321, 165, 80, 20);
+		Ch6_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch6_Mix4);
+		
+		Ch7_Mix4 = new JSpinner();
+		Ch7_Mix4.setBounds(321, 193, 80, 20);
+		Ch7_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch7_Mix4);
+		
+		Ch8_Mix4 = new JSpinner();
+		Ch8_Mix4.setBounds(321, 221, 80, 20);
+		Ch8_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		panelMixer.add(Ch8_Mix4);
+		
+		JButton button = new JButton("Save changes");
+		button.setBounds(371, 288, 140, 25);
+		panelMixer.add(button);
 		
 		JPanel panelDebug = new JPanel();
 		panelDebug.setBackground(Color.WHITE);
@@ -784,12 +1163,12 @@ public class GUI extends JFrame implements WindowListener {
 				txtrDebugData.setText("");
 			}
 		});
-		btnDebugClear.setBounds(210, 290, 100, 23);
+		btnDebugClear.setBounds(210, 290, 100, 25);
 		panelDebug.add(btnDebugClear);
 	}
 	
 	public void PopulateComPorts() {
-		for (String str: serialCom.getPorts())
+		for (String str: SerialCom.getPorts())
 			comboPortName.addItem(str);
 	}
 	
@@ -815,6 +1194,11 @@ public class GUI extends JFrame implements WindowListener {
 		tabbedPane.setEnabledAt(3, false);
 	}
 	
+	public static boolean isWindows() {
+		String os = System.getProperty("os.name").toLowerCase();
+		return (os.indexOf("win") >= 0);
+ 
+	}
 	
 	public void windowClosing(WindowEvent e) {
 		System.out.println("Closing 2");
