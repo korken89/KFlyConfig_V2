@@ -2,9 +2,9 @@ package crcgenerator;
 import java.util.*;
 
 public class CRC_CCITT {
-	public static byte[] GenerateCRC(List<Byte> message)
+	public static List<Byte> GenerateCRC(List<Byte> message)
 	{
-		byte[] ret = new byte[2];
+		List<Byte> ret = new ArrayList<Byte>();
         int crc = 0xffff;
         final int polynomial = 0x1021; 
 
@@ -21,8 +21,8 @@ public class CRC_CCITT {
         }
 
         crc &= 0xffff;
-        ret[0] = (byte)((crc >> 8) & 0x00ff);
-        ret[1] = (byte)(crc & 0x00ff);
+        ret.add((byte)((crc >> 8) & 0x00ff));
+        ret.add((byte)(crc & 0x00ff));
         
 		return ret;
 	}

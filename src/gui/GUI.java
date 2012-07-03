@@ -3,14 +3,10 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.filechooser.*;
 import communication.*;
-
-import java.awt.Color;
-import java.awt.SystemColor;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import jssc.*;
-
-import java.awt.Font;
 
 public class GUI extends JFrame implements WindowListener {
 	private SerialCom serialCom;
@@ -27,8 +23,7 @@ public class GUI extends JFrame implements WindowListener {
 	private JTextArea txtrDebugData;
 	private JComboBox comboBaudrate;
 	private JButton btnFirmwareFlash;
-	private JButton btnFirmwareVerify;
-	private JButton btnFirmwareRead;
+	private JButton btnExitBootloader;
 	private JButton btnFirmwarePathBrowse;
 	private JPanel panelRegulator;
 	private JPanel panelInputs;
@@ -214,7 +209,7 @@ public class GUI extends JFrame implements WindowListener {
 							btnConnect.setText("Disconnect");
 							connectedToComPort = true;
 						} catch (SerialPortException e) {
-							JOptionPane.showMessageDialog(null, "Unable to connect to port.", "Connection problem", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Unable to connect to port (" + e.getExceptionType() + ").", "Connection problem", JOptionPane.ERROR_MESSAGE);
 						}
 					}	
 				}
@@ -301,13 +296,9 @@ public class GUI extends JFrame implements WindowListener {
 		btnFirmwareFlash.setBounds(14, 272, 89, 25);
 		panelConnection.add(btnFirmwareFlash);
 		
-		btnFirmwareVerify = new JButton("Verify");
-		btnFirmwareVerify.setBounds(113, 272, 89, 25);
-		panelConnection.add(btnFirmwareVerify);
-		
-		btnFirmwareRead = new JButton("Read");
-		btnFirmwareRead.setBounds(212, 272, 89, 25);
-		panelConnection.add(btnFirmwareRead);
+		btnExitBootloader = new JButton("Exit Bootloader");
+		btnExitBootloader.setBounds(113, 272, 150, 25);
+		panelConnection.add(btnExitBootloader);
 		
 		JButton btnSaveAllChanges = new JButton("Save to Flash");
 		btnSaveAllChanges.setBounds(355, 272, 150, 25);
@@ -549,12 +540,12 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(lblCh);
 		
 		Ch1_Min = new JSpinner();
-		Ch1_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch1_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch1_Min.setBounds(49, 25, 80, 20);
 		panelInputs.add(Ch1_Min);
 		
 		Ch1_Max = new JSpinner();
-		Ch1_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch1_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch1_Max.setBounds(229, 25, 80, 20);
 		panelInputs.add(Ch1_Max);
 		
@@ -580,12 +571,12 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(Ch2_Role);
 		
 		Ch2_Max = new JSpinner();
-		Ch2_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch2_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch2_Max.setBounds(229, 53, 80, 20);
 		panelInputs.add(Ch2_Max);
 		
 		Ch2_Min = new JSpinner();
-		Ch2_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch2_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch2_Min.setBounds(49, 53, 80, 20);
 		panelInputs.add(Ch2_Min);
 		
@@ -601,12 +592,12 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(Ch3_Role);
 		
 		Ch3_Max = new JSpinner();
-		Ch3_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch3_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch3_Max.setBounds(229, 81, 80, 20);
 		panelInputs.add(Ch3_Max);
 		
 		Ch3_Min = new JSpinner();
-		Ch3_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch3_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch3_Min.setBounds(49, 81, 80, 20);
 		panelInputs.add(Ch3_Min);
 		
@@ -622,12 +613,12 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(Ch4_Role);
 		
 		Ch4_Max = new JSpinner();
-		Ch4_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch4_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch4_Max.setBounds(229, 109, 80, 20);
 		panelInputs.add(Ch4_Max);
 		
 		Ch4_Min = new JSpinner();
-		Ch4_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch4_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch4_Min.setBounds(49, 109, 80, 20);
 		panelInputs.add(Ch4_Min);
 		
@@ -648,12 +639,12 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(lblCh_4);
 		
 		Ch5_Min = new JSpinner();
-		Ch5_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch5_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch5_Min.setBounds(49, 137, 80, 20);
 		panelInputs.add(Ch5_Min);
 		
 		Ch5_Max = new JSpinner();
-		Ch5_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch5_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch5_Max.setBounds(229, 137, 80, 20);
 		panelInputs.add(Ch5_Max);
 		
@@ -664,12 +655,12 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(Ch6_Role);
 		
 		Ch6_Max = new JSpinner();
-		Ch6_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch6_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch6_Max.setBounds(229, 165, 80, 20);
 		panelInputs.add(Ch6_Max);
 		
 		Ch6_Min = new JSpinner();
-		Ch6_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch6_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch6_Min.setBounds(49, 165, 80, 20);
 		panelInputs.add(Ch6_Min);
 		
@@ -685,12 +676,12 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(Ch7_Role);
 		
 		Ch7_Max = new JSpinner();
-		Ch7_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch7_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch7_Max.setBounds(229, 193, 80, 20);
 		panelInputs.add(Ch7_Max);
 		
 		Ch7_Min = new JSpinner();
-		Ch7_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch7_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch7_Min.setBounds(49, 193, 80, 20);
 		panelInputs.add(Ch7_Min);
 		
@@ -706,12 +697,12 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(Ch8_Role);
 		
 		Ch8_Max = new JSpinner();
-		Ch8_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch8_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch8_Max.setBounds(229, 221, 80, 20);
 		panelInputs.add(Ch8_Max);
 		
 		Ch8_Min = new JSpinner();
-		Ch8_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch8_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch8_Min.setBounds(49, 221, 80, 20);
 		panelInputs.add(Ch8_Min);
 		
@@ -770,7 +761,7 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(lblType);
 		
 		Ch1_Center = new JSpinner();
-		Ch1_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch1_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch1_Center.setBounds(139, 25, 80, 20);
 		panelInputs.add(Ch1_Center);
 		
@@ -780,37 +771,37 @@ public class GUI extends JFrame implements WindowListener {
 		panelInputs.add(lblCenter);
 		
 		Ch2_Center = new JSpinner();
-		Ch2_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch2_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch2_Center.setBounds(139, 53, 80, 20);
 		panelInputs.add(Ch2_Center);
 		
 		Ch3_Center = new JSpinner();
-		Ch3_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch3_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch3_Center.setBounds(139, 81, 80, 20);
 		panelInputs.add(Ch3_Center);
 		
 		Ch4_Center = new JSpinner();
-		Ch4_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch4_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch4_Center.setBounds(139, 109, 80, 20);
 		panelInputs.add(Ch4_Center);
 		
 		Ch5_Center = new JSpinner();
-		Ch5_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch5_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch5_Center.setBounds(139, 137, 80, 20);
 		panelInputs.add(Ch5_Center);
 		
 		Ch6_Center = new JSpinner();
-		Ch6_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch6_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch6_Center.setBounds(139, 165, 80, 20);
 		panelInputs.add(Ch6_Center);
 		
 		Ch7_Center = new JSpinner();
-		Ch7_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch7_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch7_Center.setBounds(139, 193, 80, 20);
 		panelInputs.add(Ch7_Center);
 		
 		Ch8_Center = new JSpinner();
-		Ch8_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Ch8_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch8_Center.setBounds(139, 221, 80, 20);
 		panelInputs.add(Ch8_Center);
 		tabbedPane.addTab("Output Mixer", null, panelMixer, null);
@@ -870,13 +861,13 @@ public class GUI extends JFrame implements WindowListener {
 		panelMixer.add(label_6);
 		
 		Ch1_Mix1 = new JSpinner();
-		Ch1_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch1_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		Ch1_Mix1.setBounds(49, 25, 80, 20);
 		panelMixer.add(Ch1_Mix1);
 		
 		Ch1_Mix3 = new JSpinner();
 		Ch1_Mix3.setBounds(229, 25, 80, 20);
-		Ch1_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch1_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch1_Mix3);
 		
 		JLabel lblThrottle = new JLabel("Throttle");
@@ -896,12 +887,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch2_Mix3 = new JSpinner();
 		Ch2_Mix3.setBounds(229, 53, 80, 20);
-		Ch2_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch2_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch2_Mix3);
 		
 		Ch2_Mix1 = new JSpinner();
 		Ch2_Mix1.setBounds(49, 53, 80, 20);
-		Ch2_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch2_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch2_Mix1);
 		
 		JLabel label_10 = new JLabel("Ch. 2");
@@ -911,12 +902,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch3_Mix3 = new JSpinner();
 		Ch3_Mix3.setBounds(229, 81, 80, 20);
-		Ch3_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch3_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch3_Mix3);
 		
 		Ch3_Mix1 = new JSpinner();
 		Ch3_Mix1.setBounds(49, 81, 80, 20);
-		Ch3_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch3_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch3_Mix1);
 		
 		JLabel label_11 = new JLabel("Ch. 3");
@@ -926,12 +917,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch4_Mix3 = new JSpinner();
 		Ch4_Mix3.setBounds(229, 109, 80, 20);
-		Ch4_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch4_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch4_Mix3);
 		
 		Ch4_Mix1 = new JSpinner();
 		Ch4_Mix1.setBounds(49, 109, 80, 20);
-		Ch4_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch4_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch4_Mix1);
 		
 		JLabel label_12 = new JLabel("Ch. 4");
@@ -956,22 +947,22 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch5_Mix1 = new JSpinner();
 		Ch5_Mix1.setBounds(49, 137, 80, 20);
-		Ch5_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch5_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch5_Mix1);
 		
 		Ch5_Mix3 = new JSpinner();
 		Ch5_Mix3.setBounds(229, 137, 80, 20);
-		Ch5_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch5_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch5_Mix3);
 		
 		Ch6_Mix3 = new JSpinner();
 		Ch6_Mix3.setBounds(229, 165, 80, 20);
-		Ch6_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch6_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch6_Mix3);
 		
 		Ch6_Mix1 = new JSpinner();
 		Ch6_Mix1.setBounds(49, 165, 80, 20);
-		Ch6_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch6_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch6_Mix1);
 		
 		JLabel label_14 = new JLabel("Ch. 6");
@@ -991,12 +982,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch7_Mix3 = new JSpinner();
 		Ch7_Mix3.setBounds(229, 193, 80, 20);
-		Ch7_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch7_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch7_Mix3);
 		
 		Ch7_Mix1 = new JSpinner();
 		Ch7_Mix1.setBounds(49, 193, 80, 20);
-		Ch7_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch7_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch7_Mix1);
 		
 		JLabel label_15 = new JLabel("Ch. 7");
@@ -1006,12 +997,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch8_Mix3 = new JSpinner();
 		Ch8_Mix3.setBounds(229, 221, 80, 20);
-		Ch8_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch8_Mix3.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch8_Mix3);
 		
 		Ch8_Mix1 = new JSpinner();
 		Ch8_Mix1.setBounds(49, 221, 80, 20);
-		Ch8_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch8_Mix1.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch8_Mix1);
 		
 		JLabel label_16 = new JLabel("Ch. 8");
@@ -1021,7 +1012,7 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch1_Mix2 = new JSpinner();
 		Ch1_Mix2.setBounds(139, 25, 80, 20);
-		Ch1_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch1_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch1_Mix2);
 		
 		JLabel lblPitch = new JLabel("Pitch");
@@ -1031,37 +1022,37 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch2_Mix2 = new JSpinner();
 		Ch2_Mix2.setBounds(139, 53, 80, 20);
-		Ch2_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch2_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch2_Mix2);
 		
 		Ch3_Mix2 = new JSpinner();
 		Ch3_Mix2.setBounds(139, 81, 80, 20);
-		Ch3_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch3_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch3_Mix2);
 		
 		Ch4_Mix2 = new JSpinner();
 		Ch4_Mix2.setBounds(139, 109, 80, 20);
-		Ch4_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch4_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch4_Mix2);
 		
 		Ch5_Mix2 = new JSpinner();
 		Ch5_Mix2.setBounds(139, 137, 80, 20);
-		Ch5_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch5_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch5_Mix2);
 		
 		Ch6_Mix2 = new JSpinner();
 		Ch6_Mix2.setBounds(139, 165, 80, 20);
-		Ch6_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch6_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch6_Mix2);
 		
 		Ch7_Mix2 = new JSpinner();
 		Ch7_Mix2.setBounds(139, 193, 80, 20);
-		Ch7_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch7_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch7_Mix2);
 		
 		Ch8_Mix2 = new JSpinner();
 		Ch8_Mix2.setBounds(139, 221, 80, 20);
-		Ch8_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch8_Mix2.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch8_Mix2);
 		
 		JLabel lblYaw_1 = new JLabel("Yaw");
@@ -1071,42 +1062,42 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch1_Mix4 = new JSpinner();
 		Ch1_Mix4.setBounds(321, 25, 80, 20);
-		Ch1_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch1_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch1_Mix4);
 		
 		Ch2_Mix4 = new JSpinner();
 		Ch2_Mix4.setBounds(321, 53, 80, 20);
-		Ch2_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch2_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch2_Mix4);
 		
 		Ch3_Mix4 = new JSpinner();
 		Ch3_Mix4.setBounds(321, 81, 80, 20);
-		Ch3_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch3_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch3_Mix4);
 		
 		Ch4_Mix4 = new JSpinner();
 		Ch4_Mix4.setBounds(321, 109, 80, 20);
-		Ch4_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch4_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch4_Mix4);
 		
 		Ch5_Mix4 = new JSpinner();
 		Ch5_Mix4.setBounds(321, 137, 80, 20);
-		Ch5_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch5_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch5_Mix4);
 		
 		Ch6_Mix4 = new JSpinner();
 		Ch6_Mix4.setBounds(321, 165, 80, 20);
-		Ch6_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch6_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch6_Mix4);
 		
 		Ch7_Mix4 = new JSpinner();
 		Ch7_Mix4.setBounds(321, 193, 80, 20);
-		Ch7_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch7_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch7_Mix4);
 		
 		Ch8_Mix4 = new JSpinner();
 		Ch8_Mix4.setBounds(321, 221, 80, 20);
-		Ch8_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(1), new Float(0.001)));
+		Ch8_Mix4.setModel(new SpinnerNumberModel(new Float(0), new Float(-1), new Float(1), new Float(0.001)));
 		panelMixer.add(Ch8_Mix4);
 		
 		JButton button = new JButton("Save changes");
@@ -1170,8 +1161,7 @@ public class GUI extends JFrame implements WindowListener {
 	
 	public void BootloaderAvalible(boolean tof) {
 		btnFirmwareFlash.setEnabled(tof);
-		btnFirmwareVerify.setEnabled(tof);
-		btnFirmwareRead.setEnabled(tof);
+		btnExitBootloader.setEnabled(tof);
 		btnFirmwarePathBrowse.setEnabled(tof);
 		FirmwarePath.setEditable(tof);
 		tabbedPane.setEnabledAt(1, !tof);
@@ -1181,8 +1171,7 @@ public class GUI extends JFrame implements WindowListener {
 	
 	public void DisableUntilConnected() {
 		btnFirmwareFlash.setEnabled(false);
-		btnFirmwareVerify.setEnabled(false);
-		btnFirmwareRead.setEnabled(false);
+		btnExitBootloader.setEnabled(false);
 		btnFirmwarePathBrowse.setEnabled(false);
 		FirmwarePath.setEditable(false);
 		tabbedPane.setEnabledAt(1, false);

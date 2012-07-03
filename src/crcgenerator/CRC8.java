@@ -36,7 +36,7 @@ public class CRC8 {
 	    (byte)0xde, (byte)0xd9, (byte)0xd0, (byte)0xd7, (byte)0xc2, (byte)0xc5, (byte)0xcc, (byte)0xcb,
 	    (byte)0xe6, (byte)0xe1, (byte)0xe8, (byte)0xef, (byte)0xfa, (byte)0xfd, (byte)0xf4, (byte)0xf3};
 	
-	public static byte GenereateCRC8(List<Byte> message) {
+	public static Byte GenerateCRC(List<Byte> message) {
 		byte crc = 0;
 		int TableID = 0;
 		
