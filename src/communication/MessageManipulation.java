@@ -39,7 +39,7 @@ public class MessageManipulation {
 				newList.add(b);
 		}
 		
-		newList.remove(0);
+		newList.remove(0); /* Remove one of the two SYNC-bytes at the start. Only one SYNC-byte denotes Sync */
 		
 		byte[] ByteArray = new byte[newList.size()];
 		for (int i = 0; i < newList.size(); i++) 

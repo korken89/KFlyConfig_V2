@@ -26,11 +26,11 @@ public class StartKFlyConfig {
 		List<Byte> newList = new ArrayList<Byte>();
 		/* Header starts here */
 		newList.add((byte) 0xa6);
-		newList.add((byte) 0x01);
-		newList.add((byte) 0x02);
+		newList.add((byte) 0x42);
+		newList.add((byte) 0x00);
 		/* Header ends here - Data starts here */
-		newList.add((byte) 0xaa);
-		newList.add((byte) 0xbb);
+		//newList.add((byte) 0xaa);
+		//newList.add((byte) 0xbb);
 		/* Data ends here */
 		
 		for (byte b: MessageManipulation.MessagetoByteArray(MessageManipulation.CRCMessage(newList)))

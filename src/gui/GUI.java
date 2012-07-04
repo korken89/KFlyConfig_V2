@@ -127,6 +127,18 @@ public class GUI extends JFrame implements WindowListener {
 	private JTextField Ch2_Speed;
 	private JComboBox Ch5_Speed;
 	private JComboBox Ch7_Speed;
+	private JPanel panel_10;
+	private JSpinner spinner_9;
+	private JSpinner spinner_10;
+	private JSpinner spinner_11;
+	private JLabel lblMaximumSpeedms;
+	private JSpinner spinner_12;
+	private JSpinner spinner_13;
+	private JSpinner spinner_14;
+	private JLabel lblMaximumDistancem;
+	private JLabel lblForwardreverse;
+	private JLabel lblSideToSide;
+	private JLabel lblUpdown;
 	
 	public GUI() {
 		setResizable(false);
@@ -174,9 +186,9 @@ public class GUI extends JFrame implements WindowListener {
 		tabbedPane.addTab("Connection", null, panelConnection, null);
 		panelConnection.setLayout(null);
 		
-		labelFirmwareProgress = new JLabel("Status: Downloading (47%)");
+		labelFirmwareProgress = new JLabel("Status: Downloading... (47%)");
 		labelFirmwareProgress.setHorizontalAlignment(SwingConstants.CENTER);
-		labelFirmwareProgress.setBounds(-3, 309, 528, 16);
+		labelFirmwareProgress.setBounds(-3, 309, 525, 16);
 		panelConnection.add(labelFirmwareProgress);
 		
 		JPanel panel_1 = new JPanel();
@@ -287,7 +299,7 @@ public class GUI extends JFrame implements WindowListener {
 		panel_2.add(lblPathToFile);
 		
 		progressBar = new JProgressBar();
-		progressBar.setValue(47);
+		progressBar.setValue(100);
 		progressBar.setForeground(new Color(50, 205, 50));
 		progressBar.setBounds(-5, 308, 535, 18);
 		panelConnection.add(progressBar);
@@ -1123,10 +1135,149 @@ public class GUI extends JFrame implements WindowListener {
 		comboBox.setBounds(10, 26, 151, 20);
 		panel_7.add(comboBox);
 		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(Color.WHITE);
+		tabbedPane.addTab("Flight Limits", null, panel_8, null);
+		panel_8.setLayout(null);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setLayout(null);
+		panel_9.setBorder(new TitledBorder(null, "Rate and Angle Constraints", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_9.setBackground(Color.WHITE);
+		panel_9.setBounds(10, 11, 500, 128);
+		panel_8.add(panel_9);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(187, 41, 94, 20);
+		panel_9.add(spinner);
+		
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setBounds(291, 41, 94, 20);
+		panel_9.add(spinner_1);
+		
+		JSpinner spinner_2 = new JSpinner();
+		spinner_2.setBounds(395, 41, 94, 20);
+		panel_9.add(spinner_2);
+		
+		JLabel lblMaximumAngledeg = new JLabel("Maximum angle (deg)");
+		lblMaximumAngledeg.setBounds(10, 44, 170, 16);
+		panel_9.add(lblMaximumAngledeg);
+		
+		JSpinner spinner_3 = new JSpinner();
+		spinner_3.setBounds(291, 66, 94, 20);
+		panel_9.add(spinner_3);
+		
+		JSpinner spinner_4 = new JSpinner();
+		spinner_4.setBounds(395, 66, 94, 20);
+		panel_9.add(spinner_4);
+		
+		JSpinner spinner_5 = new JSpinner();
+		spinner_5.setBounds(187, 66, 94, 20);
+		panel_9.add(spinner_5);
+		
+		JLabel lblMaximumRatedegs = new JLabel("Maximum rate (deg/s)");
+		lblMaximumRatedegs.setBounds(10, 69, 170, 16);
+		panel_9.add(lblMaximumRatedegs);
+		
+		JSpinner spinner_6 = new JSpinner();
+		spinner_6.setBounds(291, 91, 94, 20);
+		panel_9.add(spinner_6);
+		
+		JSpinner spinner_7 = new JSpinner();
+		spinner_7.setBounds(395, 91, 94, 20);
+		panel_9.add(spinner_7);
+		
+		JSpinner spinner_8 = new JSpinner();
+		spinner_8.setBounds(187, 91, 94, 20);
+		panel_9.add(spinner_8);
+		
+		JLabel lblAttitudeMaximumRate = new JLabel("Maximum rate (Attitude mode)");
+		lblAttitudeMaximumRate.setBounds(10, 94, 170, 16);
+		panel_9.add(lblAttitudeMaximumRate);
+		
+		JLabel lblPitch_1 = new JLabel("Pitch");
+		lblPitch_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPitch_1.setBounds(187, 20, 94, 16);
+		panel_9.add(lblPitch_1);
+		
+		JLabel lblRoll_2 = new JLabel("Roll");
+		lblRoll_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRoll_2.setBounds(291, 20, 94, 16);
+		panel_9.add(lblRoll_2);
+		
+		JLabel lblYaw_2 = new JLabel("Yaw");
+		lblYaw_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblYaw_2.setBounds(395, 20, 94, 16);
+		panel_9.add(lblYaw_2);
+		
+		panel_10 = new JPanel();
+		panel_10.setLayout(null);
+		panel_10.setBorder(new TitledBorder(null, "Speed and Hight Constraints (MPC Mode - future implementation)", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_10.setBackground(Color.WHITE);
+		panel_10.setBounds(10, 150, 500, 103);
+		panel_8.add(panel_10);
+		
+		spinner_9 = new JSpinner();
+		spinner_9.setEnabled(false);
+		spinner_9.setBounds(187, 41, 94, 20);
+		panel_10.add(spinner_9);
+		
+		spinner_10 = new JSpinner();
+		spinner_10.setEnabled(false);
+		spinner_10.setBounds(291, 41, 94, 20);
+		panel_10.add(spinner_10);
+		
+		spinner_11 = new JSpinner();
+		spinner_11.setEnabled(false);
+		spinner_11.setBounds(395, 41, 94, 20);
+		panel_10.add(spinner_11);
+		
+		lblMaximumSpeedms = new JLabel("Maximum speed (m/s)");
+		lblMaximumSpeedms.setBounds(10, 44, 170, 16);
+		panel_10.add(lblMaximumSpeedms);
+		
+		spinner_12 = new JSpinner();
+		spinner_12.setEnabled(false);
+		spinner_12.setBounds(291, 66, 94, 20);
+		panel_10.add(spinner_12);
+		
+		spinner_13 = new JSpinner();
+		spinner_13.setEnabled(false);
+		spinner_13.setBounds(395, 66, 94, 20);
+		panel_10.add(spinner_13);
+		
+		spinner_14 = new JSpinner();
+		spinner_14.setEnabled(false);
+		spinner_14.setBounds(187, 66, 94, 20);
+		panel_10.add(spinner_14);
+		
+		lblMaximumDistancem = new JLabel("Maximum distance (m)");
+		lblMaximumDistancem.setBounds(10, 69, 170, 16);
+		panel_10.add(lblMaximumDistancem);
+		
+		lblForwardreverse = new JLabel("Forward/Backward");
+		lblForwardreverse.setHorizontalAlignment(SwingConstants.CENTER);
+		lblForwardreverse.setBounds(177, 20, 114, 16);
+		panel_10.add(lblForwardreverse);
+		
+		lblSideToSide = new JLabel("Side to Side");
+		lblSideToSide.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSideToSide.setBounds(291, 20, 94, 16);
+		panel_10.add(lblSideToSide);
+		
+		lblUpdown = new JLabel("Up/Down");
+		lblUpdown.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUpdown.setBounds(395, 20, 94, 16);
+		panel_10.add(lblUpdown);
+		
+		JButton button_1 = new JButton("Save changes");
+		button_1.setBounds(371, 288, 140, 25);
+		panel_8.add(button_1);
+		
 		JPanel panelDebug = new JPanel();
 		panelDebug.setBackground(Color.WHITE);
 		tabbedPane.addTab("Debug", null, panelDebug, null);
-		tabbedPane.setEnabledAt(4, true);
+		tabbedPane.setEnabledAt(5, true);
 		panelDebug.setLayout(null);
 		
 		JPanel panel = new JPanel();
