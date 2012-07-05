@@ -3,9 +3,13 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.filechooser.*;
 import communication.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import jssc.*;
 
 public class GUI extends JFrame implements WindowListener {
@@ -299,12 +303,26 @@ public class GUI extends JFrame implements WindowListener {
 		panel_2.add(lblPathToFile);
 		
 		progressBar = new JProgressBar();
-		progressBar.setValue(100);
+		progressBar.setValue(47);
 		progressBar.setForeground(new Color(50, 205, 50));
 		progressBar.setBounds(-5, 308, 535, 18);
 		panelConnection.add(progressBar);
 		
 		btnFirmwareFlash = new JButton("Flash");
+		btnFirmwareFlash.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<Byte> newList = new ArrayList<Byte>();
+				/* Header starts here */
+				newList.add((byte) 0xa6);
+				newList.add((byte) 0x0d);
+				newList.add((byte) 0x00);
+				
+				try {
+					serialCom.WirteBytes(null);
+				} catch (SerialPortException e) {
+				}
+			}
+		});
 		btnFirmwareFlash.setBounds(14, 272, 89, 25);
 		panelConnection.add(btnFirmwareFlash);
 		
@@ -324,7 +342,7 @@ public class GUI extends JFrame implements WindowListener {
 				System.out.println("Regulator Options Tab opened.");
 			}
 		});
-		tabbedPane.addTab("Regulator Options", null, panelRegulator, null);
+		tabbedPane.addTab("Regulator", null, panelRegulator, null);
 		tabbedPane.setEnabledAt(1, true);
 		panelRegulator.setLayout(null);
 		
@@ -816,7 +834,7 @@ public class GUI extends JFrame implements WindowListener {
 		Ch8_Center.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
 		Ch8_Center.setBounds(139, 221, 80, 20);
 		panelInputs.add(Ch8_Center);
-		tabbedPane.addTab("Output Mixer", null, panelMixer, null);
+		tabbedPane.addTab("Mixer", null, panelMixer, null);
 		panelMixer.setLayout(null);
 		
 		Ch2_Speed = new JTextField();
@@ -1147,52 +1165,61 @@ public class GUI extends JFrame implements WindowListener {
 		panel_9.setBounds(10, 11, 500, 128);
 		panel_8.add(panel_9);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(187, 41, 94, 20);
-		panel_9.add(spinner);
+		JSpinner Pitch_MaxAngle = new JSpinner();
+		Pitch_MaxAngle.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Pitch_MaxAngle.setBounds(187, 41, 94, 20);
+		panel_9.add(Pitch_MaxAngle);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(291, 41, 94, 20);
-		panel_9.add(spinner_1);
+		JSpinner Roll_MaxAngle = new JSpinner();
+		Roll_MaxAngle.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Roll_MaxAngle.setBounds(291, 41, 94, 20);
+		panel_9.add(Roll_MaxAngle);
 		
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setBounds(395, 41, 94, 20);
-		panel_9.add(spinner_2);
+		JSpinner Yaw_MaxAngle = new JSpinner();
+		Yaw_MaxAngle.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Yaw_MaxAngle.setBounds(395, 41, 94, 20);
+		panel_9.add(Yaw_MaxAngle);
 		
 		JLabel lblMaximumAngledeg = new JLabel("Maximum angle (deg)");
 		lblMaximumAngledeg.setBounds(10, 44, 170, 16);
 		panel_9.add(lblMaximumAngledeg);
 		
-		JSpinner spinner_3 = new JSpinner();
-		spinner_3.setBounds(291, 66, 94, 20);
-		panel_9.add(spinner_3);
+		JSpinner Roll_MaxRate = new JSpinner();
+		Roll_MaxRate.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Roll_MaxRate.setBounds(291, 66, 94, 20);
+		panel_9.add(Roll_MaxRate);
 		
-		JSpinner spinner_4 = new JSpinner();
-		spinner_4.setBounds(395, 66, 94, 20);
-		panel_9.add(spinner_4);
+		JSpinner Yaw_MaxRate = new JSpinner();
+		Yaw_MaxRate.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Yaw_MaxRate.setBounds(395, 66, 94, 20);
+		panel_9.add(Yaw_MaxRate);
 		
-		JSpinner spinner_5 = new JSpinner();
-		spinner_5.setBounds(187, 66, 94, 20);
-		panel_9.add(spinner_5);
+		JSpinner Pitch_MaxRate = new JSpinner();
+		Pitch_MaxRate.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Pitch_MaxRate.setBounds(187, 66, 94, 20);
+		panel_9.add(Pitch_MaxRate);
 		
 		JLabel lblMaximumRatedegs = new JLabel("Maximum rate (deg/s)");
 		lblMaximumRatedegs.setBounds(10, 69, 170, 16);
 		panel_9.add(lblMaximumRatedegs);
 		
-		JSpinner spinner_6 = new JSpinner();
-		spinner_6.setBounds(291, 91, 94, 20);
-		panel_9.add(spinner_6);
+		JSpinner Roll_MaxRateAttitude = new JSpinner();
+		Roll_MaxRateAttitude.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Roll_MaxRateAttitude.setBounds(291, 91, 94, 20);
+		panel_9.add(Roll_MaxRateAttitude);
 		
-		JSpinner spinner_7 = new JSpinner();
-		spinner_7.setBounds(395, 91, 94, 20);
-		panel_9.add(spinner_7);
+		JSpinner Yaw_MaxRateAttitude = new JSpinner();
+		Yaw_MaxRateAttitude.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Yaw_MaxRateAttitude.setBounds(395, 91, 94, 20);
+		panel_9.add(Yaw_MaxRateAttitude);
 		
-		JSpinner spinner_8 = new JSpinner();
-		spinner_8.setBounds(187, 91, 94, 20);
-		panel_9.add(spinner_8);
+		JSpinner Pitch_MaxRateAttitude = new JSpinner();
+		Pitch_MaxRateAttitude.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		Pitch_MaxRateAttitude.setBounds(187, 91, 94, 20);
+		panel_9.add(Pitch_MaxRateAttitude);
 		
-		JLabel lblAttitudeMaximumRate = new JLabel("Maximum rate (Attitude mode)");
-		lblAttitudeMaximumRate.setBounds(10, 94, 170, 16);
+		JLabel lblAttitudeMaximumRate = new JLabel("Maximum rate (Attitude)");
+		lblAttitudeMaximumRate.setBounds(10, 94, 227, 16);
 		panel_9.add(lblAttitudeMaximumRate);
 		
 		JLabel lblPitch_1 = new JLabel("Pitch");
@@ -1218,16 +1245,18 @@ public class GUI extends JFrame implements WindowListener {
 		panel_8.add(panel_10);
 		
 		spinner_9 = new JSpinner();
-		spinner_9.setEnabled(false);
+		spinner_9.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(0.001)));
 		spinner_9.setBounds(187, 41, 94, 20);
 		panel_10.add(spinner_9);
 		
 		spinner_10 = new JSpinner();
+		spinner_10.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(0.001)));
 		spinner_10.setEnabled(false);
 		spinner_10.setBounds(291, 41, 94, 20);
 		panel_10.add(spinner_10);
 		
 		spinner_11 = new JSpinner();
+		spinner_11.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(0.001)));
 		spinner_11.setEnabled(false);
 		spinner_11.setBounds(395, 41, 94, 20);
 		panel_10.add(spinner_11);
@@ -1237,16 +1266,19 @@ public class GUI extends JFrame implements WindowListener {
 		panel_10.add(lblMaximumSpeedms);
 		
 		spinner_12 = new JSpinner();
+		spinner_12.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(0.001)));
 		spinner_12.setEnabled(false);
 		spinner_12.setBounds(291, 66, 94, 20);
 		panel_10.add(spinner_12);
 		
 		spinner_13 = new JSpinner();
+		spinner_13.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(0.001)));
 		spinner_13.setEnabled(false);
 		spinner_13.setBounds(395, 66, 94, 20);
 		panel_10.add(spinner_13);
 		
 		spinner_14 = new JSpinner();
+		spinner_14.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(0.001)));
 		spinner_14.setEnabled(false);
 		spinner_14.setBounds(187, 66, 94, 20);
 		panel_10.add(spinner_14);
@@ -1255,7 +1287,7 @@ public class GUI extends JFrame implements WindowListener {
 		lblMaximumDistancem.setBounds(10, 69, 170, 16);
 		panel_10.add(lblMaximumDistancem);
 		
-		lblForwardreverse = new JLabel("Forward/Backward");
+		lblForwardreverse = new JLabel("For-/Backward");
 		lblForwardreverse.setHorizontalAlignment(SwingConstants.CENTER);
 		lblForwardreverse.setBounds(177, 20, 114, 16);
 		panel_10.add(lblForwardreverse);

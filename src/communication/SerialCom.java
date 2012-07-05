@@ -22,18 +22,32 @@ public class SerialCom {
 		serialPort.closePort();
 	}
 	
+	public void WirteBytes(byte[] message) throws SerialPortException {
+		serialPort.writeBytes(message);
+	}
+	
 	class SerialPortReader implements SerialPortEventListener {
 		public void serialEvent(SerialPortEvent event) {
 			if (event.isRXCHAR()) {
 				try {
 					byte buffer[] = serialPort.readBytes();
 					for (byte i: buffer)
-						System.out.print((char)i);
+						System.out.print(IntToHex((int)i & 0xff) + " ");
+						
 				}
 				catch (SerialPortException ex) {
 						ex.printStackTrace();
 				}
 			}
 		}
+	}
+	
+	/* *
+	 * This method makes hex numbers in correct length.
+	 * */
+	public static String IntToHex(int value) {
+		String hex = Integer.toHexString(value);
+		hex = (hex.length() % 2 == 0) ? hex : "0" + hex;
+		return hex;
 	}
 }
