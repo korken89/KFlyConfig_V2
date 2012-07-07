@@ -38,7 +38,7 @@ public abstract class KFlyCommand
 		GetRegulatorData(255),
 		SetRegulatorData(0),
 		GetChannelMix(255),
-		SetChannelMi(0),
+		SetChannelMix(0),
 		StartRCCalibration(0),
 		StopRCCalibration(0),
 		CalibrateRCCenters(0),
@@ -60,15 +60,27 @@ public abstract class KFlyCommand
 		}
 	}
 	
-	public static byte[] CreateMessage(Command cmd, boolean ACK, int size, List<Byte> message) {
+	public static byte[] CreateMessage(Command cmd, boolean ACK, List<Byte>... messages) throws IllegalArgumentException {
+		if ((cmd.length() == 0) && (messages.length > 0))
+			throw new IllegalArgumentException();
+		else if (messages[0].size() != cmd.length())
+			throw new IllegalArgumentException();
+		else if (messages.length > 1)
+			throw new IllegalArgumentException();
+		
+		
 		List<Byte> newMessage = new ArrayList<Byte>();
-
+		List<Byte> message = messages[0];
+		int size = message.size();
+		
+		
+		
 		/* First add SYNC-byte */
 		newMessage.add((byte)SYNC);	
 		
 		/* Then add command */
 		if (ACK)
-			newMessage.add((byte) ((byte)cmd.ordinal() | 0x40));
+			newMessage.add((byte) ((byte)cmd.ordinal() | (byte)0x40));
 		else
 			newMessage.add((byte) cmd.ordinal());
 		
@@ -76,17 +88,13 @@ public abstract class KFlyCommand
 		newMessage.add((byte) (size & 0xff));
 		
 		/* If there is a message, add it */
-		if ((message == null) && (size == 0)) {
+		if (size == 0) {
 			return MessagetoByteArray(CRCMessage(newMessage));
 		}
-		else if (size == message.size()) {
-			if (size > 0)
-				newMessage.addAll(message);
-			
+		else {
+			newMessage.addAll(message);
 			return MessagetoByteArray(CRCMessage(newMessage));
 		}
-		else
-			return null;
 	}
 	
 	private static List<Byte> CRCMessage(List<Byte> message) {

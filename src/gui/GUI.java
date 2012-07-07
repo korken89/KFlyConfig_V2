@@ -1239,7 +1239,7 @@ public class GUI extends JFrame implements WindowListener {
 		
 		panel_10 = new JPanel();
 		panel_10.setLayout(null);
-		panel_10.setBorder(new TitledBorder(null, "Speed and Hight Constraints (MPC Mode - future implementation)", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_10.setBorder(new TitledBorder(null, "Speed and Hight Constraints (MPC Mode)", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_10.setBackground(Color.WHITE);
 		panel_10.setBounds(10, 150, 500, 103);
 		panel_8.add(panel_10);

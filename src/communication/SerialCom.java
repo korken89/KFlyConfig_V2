@@ -15,7 +15,6 @@ public class SerialCom {
 		serialPort.openPort();
 		serialPort.setParams(speed, 8, 1, 0);
 		serialPort.setEventsMask(SerialPort.MASK_RXCHAR);
-		serialPort.addEventListener(new SerialPortReader());
 	}
 	
 	public void ClosePort() throws SerialPortException {
@@ -24,6 +23,10 @@ public class SerialCom {
 	
 	public void WirteBytes(byte[] message) throws SerialPortException {
 		serialPort.writeBytes(message);
+	}
+	
+	public void SetEventListener (SerialPortEventListener listener) throws SerialPortException {
+		serialPort.addEventListener(listener);
 	}
 	
 	class SerialPortReader implements SerialPortEventListener {
@@ -42,7 +45,7 @@ public class SerialCom {
 		}
 	}
 	
-	/* *
+		/* *
 	 * This method makes hex numbers in correct length.
 	 * */
 	public static String IntToHex(int value) {
