@@ -1239,12 +1239,13 @@ public class GUI extends JFrame implements WindowListener {
 		
 		panel_10 = new JPanel();
 		panel_10.setLayout(null);
-		panel_10.setBorder(new TitledBorder(null, "Speed and Hight Constraints (MPC Mode)", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_10.setBorder(new TitledBorder(null, "Speed and Height Constraints", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_10.setBackground(Color.WHITE);
 		panel_10.setBounds(10, 150, 500, 103);
 		panel_8.add(panel_10);
 		
 		spinner_9 = new JSpinner();
+		spinner_9.setEnabled(false);
 		spinner_9.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(0.001)));
 		spinner_9.setBounds(187, 41, 94, 20);
 		panel_10.add(spinner_9);
@@ -1335,6 +1336,20 @@ public class GUI extends JFrame implements WindowListener {
 		});
 		btnDebugClear.setBounds(210, 290, 100, 25);
 		panelDebug.add(btnDebugClear);
+		
+		
+	}
+	
+	public static void fixFont(Container c, float size) {
+	    c.setFont(c.getFont().deriveFont(size));
+	    Component[] comp = c.getComponents();
+	    for (int i=0;i<comp.length;++i) {
+	        if (comp[i] instanceof Container) {
+	            fixFont((Container) comp[i], size);
+	        } else {
+	            comp[i].setFont(comp[i].getFont().deriveFont(size));
+	        }
+	    }
 	}
 	
 	public void PopulateComPorts() {
@@ -1365,6 +1380,11 @@ public class GUI extends JFrame implements WindowListener {
 	public static boolean isWindows() {
 		String os = System.getProperty("os.name").toLowerCase();
 		return (os.indexOf("win") >= 0);
+	}
+	
+	public static boolean isLinux() {
+		String os = System.getProperty("os.name").toLowerCase();
+		return (os.indexOf("lin") >= 0);
 	}
 	
 	public void windowClosing(WindowEvent e) {
