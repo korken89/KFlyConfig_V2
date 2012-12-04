@@ -93,18 +93,26 @@ public class MatrixOps {
 		}
 	}
 	
+	private static int ops;
+	
 	public static float[][] MatrixMultiply(float a[][], float b[][]) { 
 		int aRows = a.length;
 		int aColumns = a[0].length;
 		int bColumns = b[0].length;
-		   
+		
+		ops = 0;
+		
 		float[][] resultant = new float[aRows][bColumns];
 		   
 		for(int i = 0; i < aRows; i++)
 			for(int j = 0; j < bColumns; j++)
-				for(int k = 0; k < aColumns; k++)
+				for(int k = 0; k < aColumns; k++) {
 					resultant[i][j] += a[i][k] * b[k][j];
+					ops++;
+				}
 		   
+		System.out.println("Ops: " + ops);
+		
 		return resultant;
 	}
 	

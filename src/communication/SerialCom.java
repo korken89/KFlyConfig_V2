@@ -34,12 +34,11 @@ public class SerialCom {
 			if (event.isRXCHAR()) {
 				try {
 					byte buffer[] = serialPort.readBytes();
-					for (byte i: buffer)
-						System.out.print(IntToHex((int)i & 0xff) + " ");
-						
-				}
-				catch (SerialPortException ex) {
-						ex.printStackTrace();
+					for (byte i : buffer)
+						System.out.print(IntToHex((int) i & 0xff) + " ");
+
+				} catch (SerialPortException ex) {
+					ex.printStackTrace();
 				}
 			}
 		}

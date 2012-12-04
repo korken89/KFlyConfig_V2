@@ -32,8 +32,8 @@ public abstract class KFlyCommand
 		ReadLastFirmwarePackage(255),	/* Bootloader specific, shall always require ACK */
 		NextPackage(0),					/* Bootloader specific, shall always require ACK */
 		ExitBootloader(0),				/* Bootloader specific, shall always require ACK */
-		GetBootloaderVersion(255),
-		GetFirmwareVersion(255),
+		GetBootloaderVersion(0),
+		GetFirmwareVersion(0),
 		SaveToFlash(0),
 		GetRegulatorData(255),
 		SetRegulatorData(0),
@@ -61,8 +61,10 @@ public abstract class KFlyCommand
 	}
 	
 	public static byte[] CreateMessage(Command cmd, boolean ACK, List<Byte>... messages) throws IllegalArgumentException {
-		if ((cmd.length() == 0) && (messages.length > 0))
-			throw new IllegalArgumentException();
+		//System.out.println(messages);
+		
+		if (messages[0] == null)
+			messages[0] = new ArrayList<Byte>();
 		else if (messages[0].size() != cmd.length())
 			throw new IllegalArgumentException();
 		else if (messages.length > 1)

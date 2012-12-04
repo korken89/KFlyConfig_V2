@@ -169,7 +169,7 @@ public class GUI extends JFrame implements WindowListener {
 		if (isWindows())
 			setBounds(100, 100, 528, 378);
 		else
-			setBounds(100, 100, 528, 360);
+			setBounds(100, 100, 528, 386);
 		
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.control);
@@ -178,7 +178,7 @@ public class GUI extends JFrame implements WindowListener {
 		contentPane.setLayout(null);
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 540, 385);
+		tabbedPane.setBounds(0, 0, 522, 349);
 		if (isWindows())
 			tabbedPane.setBounds(0, 0, 540, 385);
 		else
@@ -571,22 +571,22 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch1_Min = new JSpinner();
 		Ch1_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch1_Min.setBounds(49, 25, 80, 20);
+		Ch1_Min.setBounds(229, 25, 80, 20);
 		panelInputs.add(Ch1_Min);
 		
 		Ch1_Max = new JSpinner();
 		Ch1_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch1_Max.setBounds(229, 25, 80, 20);
+		Ch1_Max.setBounds(49, 25, 80, 20);
 		panelInputs.add(Ch1_Max);
 		
 		JLabel lblMin = new JLabel("Min");
 		lblMin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMin.setBounds(49, 6, 80, 14);
+		lblMin.setBounds(229, 6, 80, 14);
 		panelInputs.add(lblMin);
 		
 		JLabel lblMax = new JLabel("Max");
 		lblMax.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMax.setBounds(229, 6, 80, 14);
+		lblMax.setBounds(49, 6, 80, 14);
 		panelInputs.add(lblMax);
 		
 		JLabel lblRole = new JLabel("Role");
@@ -602,12 +602,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch2_Max = new JSpinner();
 		Ch2_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch2_Max.setBounds(229, 53, 80, 20);
+		Ch2_Max.setBounds(49, 53, 80, 20);
 		panelInputs.add(Ch2_Max);
 		
 		Ch2_Min = new JSpinner();
 		Ch2_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch2_Min.setBounds(49, 53, 80, 20);
+		Ch2_Min.setBounds(229, 53, 80, 20);
 		panelInputs.add(Ch2_Min);
 		
 		JLabel lblCh_1 = new JLabel("Ch. 2");
@@ -623,12 +623,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch3_Max = new JSpinner();
 		Ch3_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch3_Max.setBounds(229, 81, 80, 20);
+		Ch3_Max.setBounds(49, 81, 80, 20);
 		panelInputs.add(Ch3_Max);
 		
 		Ch3_Min = new JSpinner();
 		Ch3_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch3_Min.setBounds(49, 81, 80, 20);
+		Ch3_Min.setBounds(229, 81, 80, 20);
 		panelInputs.add(Ch3_Min);
 		
 		JLabel lblCh_2 = new JLabel("Ch. 3");
@@ -644,12 +644,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch4_Max = new JSpinner();
 		Ch4_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch4_Max.setBounds(229, 109, 80, 20);
+		Ch4_Max.setBounds(49, 109, 80, 20);
 		panelInputs.add(Ch4_Max);
 		
 		Ch4_Min = new JSpinner();
 		Ch4_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch4_Min.setBounds(49, 109, 80, 20);
+		Ch4_Min.setBounds(229, 109, 80, 20);
 		panelInputs.add(Ch4_Min);
 		
 		JLabel lblCh_3 = new JLabel("Ch. 4");
@@ -670,12 +670,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch5_Min = new JSpinner();
 		Ch5_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch5_Min.setBounds(49, 137, 80, 20);
+		Ch5_Min.setBounds(229, 137, 80, 20);
 		panelInputs.add(Ch5_Min);
 		
 		Ch5_Max = new JSpinner();
 		Ch5_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch5_Max.setBounds(229, 137, 80, 20);
+		Ch5_Max.setBounds(49, 137, 80, 20);
 		panelInputs.add(Ch5_Max);
 		
 		Ch6_Role = new JComboBox();
@@ -686,12 +686,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch6_Max = new JSpinner();
 		Ch6_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch6_Max.setBounds(229, 165, 80, 20);
+		Ch6_Max.setBounds(49, 165, 80, 20);
 		panelInputs.add(Ch6_Max);
 		
 		Ch6_Min = new JSpinner();
 		Ch6_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch6_Min.setBounds(49, 165, 80, 20);
+		Ch6_Min.setBounds(229, 165, 80, 20);
 		panelInputs.add(Ch6_Min);
 		
 		JLabel lblCh_5 = new JLabel("Ch. 6");
@@ -707,12 +707,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch7_Max = new JSpinner();
 		Ch7_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch7_Max.setBounds(229, 193, 80, 20);
+		Ch7_Max.setBounds(49, 193, 80, 20);
 		panelInputs.add(Ch7_Max);
 		
 		Ch7_Min = new JSpinner();
 		Ch7_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch7_Min.setBounds(49, 193, 80, 20);
+		Ch7_Min.setBounds(229, 193, 80, 20);
 		panelInputs.add(Ch7_Min);
 		
 		JLabel lblCh_6 = new JLabel("Ch. 7");
@@ -728,12 +728,12 @@ public class GUI extends JFrame implements WindowListener {
 		
 		Ch8_Max = new JSpinner();
 		Ch8_Max.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch8_Max.setBounds(229, 221, 80, 20);
+		Ch8_Max.setBounds(49, 221, 80, 20);
 		panelInputs.add(Ch8_Max);
 		
 		Ch8_Min = new JSpinner();
 		Ch8_Min.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(5000), new Integer(1)));
-		Ch8_Min.setBounds(49, 221, 80, 20);
+		Ch8_Min.setBounds(229, 221, 80, 20);
 		panelInputs.add(Ch8_Min);
 		
 		JLabel lblCh_7 = new JLabel("Ch. 8");

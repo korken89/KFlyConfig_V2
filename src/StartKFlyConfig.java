@@ -2,6 +2,11 @@ import gui.*;
 import java.awt.EventQueue;
 import java.util.*;
 import java.io.*;
+
+import MatrixOperations.MatrixOps;
+import communication.KFlyCommand;
+import communication.KFlyCommand.Command;
+import communication.SerialCom;
 import communication.StateMachine;
 
 public class StartKFlyConfig {
@@ -55,6 +60,9 @@ public class StartKFlyConfig {
 			nPackages++;
 		
 		System.out.println(nPackages + " packages to send and the last package will contain: " + LastSize + " bytes");
+		
+		for (byte b: KFlyCommand.CreateMessage(Command.GetBootloaderVersion, false, (List<Byte>)null))
+			System.out.print(SerialCom.IntToHex((int)b & 0xff) + " ");
 	}
 
 	public static void printMat(float[][] mat) {
